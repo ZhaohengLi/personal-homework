@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{ctex}
+
+\title{概率论与数理统计第一次作业}
+
+\author{ZhaohengLi 2017050025}
+
+\begin{document}
+\maketitle
+
+% --------------------
+\section{第5题}
+% --------------------
+由题意可知$\Omega=\{(B,C)|B,C=1,2...,6\}$,当$B^{2}-4C>=0$时方程有实根，当$B^{2}-4C=0$时方程有重根。\\
+$p=P(B^{2}>=4C)=\frac{19}{36}$\\
+$q=P(B^{2}=4C)=\frac{2}{36}=\frac{1}{18}$\\
+
+% --------------------
+\section{第6题}
+% --------------------
+(1)$P=\frac{C^{4}_{13}}{C^{4}_{52}}=0.0026$\\
+(2)$P=\frac{4*C^{4}_{13}}{C^{4}_{52}}=0.0105$\\
+(3)$P=\frac{13^{4}}{C^{4}_{52}}=0.1054$\\
+(4)$P=\frac{2*C^{4}_{26}}{C^{4}_{52}}=0.1104$\\
+% --------------------
+\section{第9题}
+% --------------------
+$P=\frac{5*4+3*6}{8*10}=\frac{19}{40}$\\
+% --------------------
+\section{第10题}
+% --------------------
+$P=\frac{2*C^{1}_{k-1}*C^{1}_{n-k}}{C^{2}_{n}}$
+
+\section{第21题}
+$P=\frac{C^{3}_{12}*3^{9}}{3^{12}}=0.212$
+
+
+% --------------------
+\section{第22题}
+% --------------------
+利用插棍思想，将盒子抽象为两个木棍之间的空间，使用N+1根木棍组成N个盒子，放入问题即变为排列问题。\\利用01序列来表示各种情况，例如“1001011”表示第1个盒子有2个球，第2个盒子有1个球，第3个盒子没有球。\\
+样本总量为
+\begin{equation}
+    C^{n}_{N-1+n}
+\end{equation}
+(1)此时不妨假设指定的盒子为第1个盒子，问题化简为n-k个球放入N-1个盒子里\\
+\begin{equation}
+    P=\frac{C^{n-k}_{N-2-k+n}}{C^{n}_{N-1+n}}\quad(0<=k<=n)
+\end{equation}{}
+
+(2)首先从N个盒子中选出m个盒子作为空盒，再将n个球放入剩余的N-m个盒子中，为保证每个盒子中至少有一个球。我们可以排列球在球与球之间插入木棍。\\
+\begin{equation}
+    P=\frac{C^{m}_{N}*C^{N-m-1}_{n-1}}{C^{n}_{N-1+n}}\quad(N-n<=m<=N-1)
+\end{equation}
+(3)将整体分为两部分分析，得到如下\\
+\begin{equation}
+    P=\frac{C^{m-1}_{m+j-1}*C^{n-j}_{N+n-m-j-1}}{C^{n}_{N-1+n}}\quad(1<=m<=N, 0<=j<=n)
+\end{equation}
+
+\section{第16题}
+\begin{equation}
+   P(AB)=P(\overline{A}\cap\overline{B})=P(\overline{A\cup B})=1-P(A\cup B)=1-P(A)-P(B)+P(AB)
+\end{equation}
+因为$P(A)=p$所以$P(B)=1-p$。
+
+\section{第19题}
+(1)$P(A)>=P(A(B\cup C))=P(AB\cup AC)=P(AB)+P(AC)-P(ABC)>=P(A)+P(B)-P(BC)$\\
+(2)因为$P(A\cup B\cup C)=P(A)+P(B)+P(C)-P(AB)-P(BC)-P(AC)+P(ABC)<=1$,\\
+所以$P(A)+P(B)+P(C)-1$\\
+$<=P(AB)+P(BC)+P(AC)-P(ABC)$\\
+$<=P(AB)+P(BC)+P(AC)$
+
+\section{第21题}
+因为$P(ABC)=P(\overline{A}\cap\overline{B}\cap\overline{C})=1-P(A\cup B\cup C)$\\
+$=1-P(A)-P(B)-P(C)+P(AB)+P(BC)+P(AC)-P(ABC)$\\
+$=P(AB)+P(BC)+P(AC)-\frac{1}{2}-P(ABC)$\\
+所以原式成立。
+\end{document}
