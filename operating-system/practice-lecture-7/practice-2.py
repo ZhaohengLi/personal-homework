@@ -1,56 +1,45 @@
-# 测试输入
-input = ['c', 'c', 'd', 'b', 'c', 'e', 'c', 'e', 'a', 'd']
-T = 2
+List=[1,2,3,4,1,2,5,1,2,3,4,5]  #此列表中存放将要访问的页面
+print("访问序列")
+print(List)
 
-# initial state
-pages_lastHit = {}
-pages_lastHit['a'] = 0
-pages_lastHit['d'] = 0
-pages_lastHit['e'] = 0
-lastPF = 0
+print("页面调度过程")
+a_list=[]                       #此列表用来模拟LRU算法中的主存 最多存放3个数
+count=0                         #记录缺页数
+tag=1                           #标记是否缺页
+for i in List:                  #将要访问的列表元素进行循环
+    if i not in a_list:         #如果要访问的元素不在a_list中 即为缺页
+        count+=1
+        tag=1
+        if len(a_list)<3:                   #如果a_list中没有放满
+            a_list[len(a_list)::]=[i]       #等价于a_list.append(i)将元素i添加到a_list尾部
+        else:                               #如果列表满了
+            a_list[:2:]=a_list[1::]         #利用切片，将前两个元素替换为后两个元素，列表首元素出列表的功能
+            a_list[2::]=[i]                 #将i元素放移动后的到列表最后
+    else:                                   #i元素在列表中
+        tag=0
+        a_list[a_list.index(i)::]=a_list[a_list.index(i)+1::]#将i开始和元素后面的元素替换为i元素后面的元素
+        a_list[len(a_list)::]=[i]                            #将i元素插入到移动后的列表后面
+    print(a_list,"缺页发生"if tag==1 else "")
+print("发生缺页次数:",count)
 
-print "Initial State:", pages_lastHit
-for i in range(0, len(input)):
-    visitPage = input[i]
-    print "Visit page", visitPage,
-    if pages_lastHit.has_key(visitPage):
-        print "Hit " + visitPage,
-        pages_lastHit[visitPage] = i+1
-    else:
-        print "(Interrupt)page Fault",
-        if (i+1) - lastPF > T:
-            # delete all unused pages since last Page Fault
-            existingPages = pages_lastHit.keys()
-            for page in existingPages:
-                if(pages_lastHit[page] <= lastPF):
-                    pages_lastHit.pop(page, None)
-            pages_lastHit[visitPage] = i+1
-        else:
-            # just add the missing page
-            pages_lastHit[visitPage] = i+1
-        lastPF = i+1
-    print ""
-    print pages_lastHit
+# LRU模拟
+# 使用方法 python3 practice-2.py
 
-# 页面调度过程如下
-# Initial State: {'a': 0, 'e': 0, 'd': 0}
-# Visit page c (Interrupt)page Fault
-# {'a': 0, 'c': 1, 'e': 0, 'd': 0}
-# Visit page c Hit c
-# {'a': 0, 'c': 2, 'e': 0, 'd': 0}
-# Visit page d Hit d
-# {'a': 0, 'c': 2, 'e': 0, 'd': 3}
-# Visit page b (Interrupt)page Fault
-# {'c': 2, 'b': 4, 'd': 3}
-# Visit page c Hit c
-# {'c': 5, 'b': 4, 'd': 3}
-# Visit page e (Interrupt)page Fault
-# {'c': 5, 'b': 4, 'e': 6, 'd': 3}
-# Visit page c Hit c
-# {'c': 7, 'b': 4, 'e': 6, 'd': 3}
-# Visit page e Hit e
-# {'c': 7, 'b': 4, 'e': 8, 'd': 3}
-# Visit page a (Interrupt)page Fault
-# {'a': 9, 'c': 7, 'e': 8}
-# Visit page d (Interrupt)page Fault
-# {'a': 9, 'c': 7, 'e': 8, 'd': 10}
+# 访问序列
+# [1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5]
+
+# 页面调度过程
+# [1] 缺页发生
+# [1, 2] 缺页发生
+# [1, 2, 3] 缺页发生
+# [2, 3, 4] 缺页发生
+# [3, 4, 1] 缺页发生
+# [4, 1, 2] 缺页发生
+# [1, 2, 5] 缺页发生
+# [2, 5, 1]
+# [5, 1, 2]
+# [1, 2, 3] 缺页发生
+# [2, 3, 4] 缺页发生
+# [3, 4, 5] 缺页发生
+
+# 发生缺页次数: 10
