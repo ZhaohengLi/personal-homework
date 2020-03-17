@@ -177,7 +177,7 @@ class scheduler:
             if instruction_to_execute == DO_YIELD:
                 #YOUR CODE
                 self.move_to_ready(STATE_RUNNING)
-                
+                self.next_proc()
 
             # ENDCASE: check if currently running thing is out of instructions
             self.check_if_done()
