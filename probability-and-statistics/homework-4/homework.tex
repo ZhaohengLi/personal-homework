@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\geometry{a4paper, scale=0.8}
+
+\title{概率论与数理统计第四次作业}
+\author{ZhaohengLi 2017050025}
+
+\begin{document}
+\maketitle
+
+\section{2.2.8}
+当回答顺序为1，2时，X分布列为：
+\begin{table}[H]
+\centering
+\begin{tabular}{l|lll}
+\hline
+X & 0   & 200     & 300     \\ \hline
+P & 0.4 & 0.6*0.2 & 0.6*0.8 \\ \hline
+\end{tabular}
+\end{table}
+
+$E(X)=168$
+
+当回答顺序为2，1时，X分布列为：
+\begin{table}[H]
+\centering
+\begin{tabular}{l|lll}
+\hline
+X & 0   & 100     & 300     \\ \hline
+P & 0.2 & 0.8*0.4 & 0.8*0.6 \\ \hline
+\end{tabular}
+\end{table}
+
+$E(X)=176$
+
+因此应该先回答问题2。
+\section{2.2.10}
+设X为保险公司的收益，则X的分布列为：
+\begin{table}[H]
+\centering
+\begin{tabular}{l|ll}
+\hline
+X & -a & ka  \\ \hline
+P & p  & 1-p \\ \hline
+\end{tabular}
+\end{table}
+
+所以保险公司的期望收益为$E(X)=-ap+ka(1-p)$，由$E(X)\leq 0.1a$，可得到$-ap+ka(1-p)\leq 0.1a$，解得：
+$$k\leq \frac{0.1+p}{1-p}$$
+
+一些具体的数值可查下表：
+\begin{table}[H]
+\centering
+\begin{tabular}{llllllll}
+X & 0.01   & 0.05    & 0.1    & 0.2    & 0.3    & 0.4   & 0.5    \\
+P & 0.1111 & 0.11579 & 0.2222 & 0.3750 & 0.5714 & .8333 & 1.2000
+\end{tabular}
+\end{table}
+
+\section{2.2.14}
+
+由分布函数可得到密度函数为：
+\begin{equation}
+p(x)=
+\left\{
+\begin{aligned}
+&0.5e^x,&x<0,\\
+&0,&0\leq x <1,\\
+&0.25e^{-0.5(x-1)},&x\leq1
+\end{aligned}
+\right.
+\end{equation}
+
+
+$$E(X)=\int_{-\infty}^00.5xe^xdx+\int_1^{+\infty}0.25xe^{-0.5(x-1)}dx=1$$
+\section{2.2.17}
+$$p=P(X>\pi/3)=\int_{\pi/3}^\pi0.5cos(0.5x)dx=1-sin(\pi/6)=0.5$$
+$$P(Y=k)=C^k_4*0.5^k0.5^{4-k},\quad k=0,1,2,3,4.$$
+$$E(Y^2)=\sum^4_{k=0}k^2C^k_40.5^4=80*0.5^4=5$$
+\section{2.2.20}
+$$E(X)=\int^{+\infty}_{-\infty}xp(x)dx=\int_{-\infty}^0xp(x)dx+\int^{+\infty}_0xp(x)dx$$
+\begin{equation}
+\begin{aligned}
+\int_{-\infty}^0xp(x)dx&=-\int^0_{-\infty}(\int^0_xdy)p(x)dx\\
+&=-\int^0_{-\infty}\int^y_{-\infty}p(x)dxdy\\
+&=-\int^0_{-\infty}F(y)dy
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\int^{+\infty}_0xp(x)dx&=\int_0^{+\infty}(\int_0^xdy)p(x)dx\\
+&=\int_0^{+\infty}(\int_y^{+\infty}p(x)dx)dy\\
+&=\int_0^{+\infty}[1-F(y)]dy
+\end{aligned}
+\end{equation}
+
+两式相加即可得到要证明的等式。
+
+\section{2.3.7}
+
+由题意可得：
+
+$$1=\int_{-\infty}^{+\infty}p(x)dx=a/2+b/3$$
+$$0.5=E(X)=\int_0^1x(ax+bx^2)dx=a/3+b/4$$
+
+解上述两式可得到$a=6,b=-6$。
+$$E(X^2)=\int^1_0x^2(6x-6x^2)dx=0.3$$
+$$Var(X)=E(X^2)-[E(X)]^2=0.05$$
+
+\section{2.3.11}
+
+
+
+$$Var(X)\leq E(X-\frac{x_1+x_n}{2})^2\leq E(x_n-\frac{x_1+x_n}{2})^2=(\frac{x_n-x_1}{2})^2$$
+
+
+\section{2.3.12}
+
+\begin{equation}
+\begin{aligned}
+P(X>\epsilon)&=\int_\epsilon^{+\infty}p(x)dx\\
+&\leq\int_\epsilon^{+\infty}\frac{g(x)}{g(\epsilon)}p(x)dx\\
+&\leq\int_{-\infty}^{+\infty}\frac{g(x)}{g(\epsilon)}p(x)dx\\
+&=\frac{E(g(X))}{g(\epsilon)}
+\end{aligned}
+\end{equation}
+
+\section{2.4.3}
+$$P(X\geq2)=P(X=2)+P(X=3)=3*0.7^2*0.3+0.7^3=0.784$$
+
+\section{2.4.10}
+设事件A为“服用此药后，一年感冒两次”，事件B为“服用此药后有效”。根据题意有：
+
+$$P(A)=P(B)P(A|B)+P(\overline B)P(A|\overline B)$$
+$$P(B|A)=\frac{0.75*\frac{3^2}{2!}e^{-3}}{0.75*\frac{3^2}{2!}e^{-3}+0.25*\frac{5^2}{2!}e^{-5}}=0.889$$
+\end{document}
