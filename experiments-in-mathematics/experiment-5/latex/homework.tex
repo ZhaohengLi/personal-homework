@@ -1,0 +1,440 @@
+\documentclass{article}
+
+\usepackage{ctex}
+\usepackage{listings}
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{float}
+\geometry{a4paper, scale=0.8}
+
+\title{数学实验实验报告}
+\author{ZhaohengLi 2017050025\\cainetatum@foxmail.com\\15801206130}
+
+\begin{document}
+\maketitle
+\section{实验目的}
+\begin{itemize}
+	\item{学会用MATLAB软件数值求解线性代数方程组，对迭代法的收敛性和解的稳定性作初步分析;}
+	\item{通过实例学习用线性代数方程组解决简化的实际问题。}
+\end{itemize}
+
+\newpage
+\section{CH5-T1 误差}
+\subsection{(1)}
+在构造Vandermonde矩阵时，可以先构造初始行向量$v$，再使用$fliplr(vander(v))$函数获得所需矩阵，具体代码如下：
+\begin{lstlisting}
+%% Functions
+function result = generateA1(n)
+v = zeros(1,n);
+for i = 0:n-1
+    v(1,i+1)=1+0.1*i;
+end
+result = fliplr(vander(v));
+end
+\end{lstlisting}
+
+由于$b1,b2$是通过求$A1，A2$行和所得到的，因此可以预先知道方程组$A_1x=b_1,A_2x=b_2$的解均为$[1,1,1,1,1]^T$。
+在MATLAB中使用左除命令求得两方程的解也得到了相同的结果。
+
+实验的完整代码如下：
+\begin{lstlisting}
+%% Global Variables
+n = 5;
+A1 = generateA1(n);
+A2 = hilb(n);
+b1 = cal(A1);
+b2 = cal(A2);
+
+%% Cal
+x1 = A1\b1;
+x2 = A2\b2;
+
+%% Functions
+function result = generateA1(n)
+v = zeros(1,n);
+for i = 0:n-1
+    v(1,i+1)=1+0.1*i;
+end
+result = fliplr(vander(v));
+end
+
+function b = cal(A)
+[m,n]=size(A);
+b=zeros(m,1);
+for i = 1:m
+    for j = 1:n
+        b(i,1)=b(i,1)+A(i,j);
+    end
+end
+end
+\end{lstlisting}
+
+\subsection{(2)}
+令$n=5,7,9,11$计算$A1$和$A2$的条件数结果如下：
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+        & n=5        & n=7        & n=9        & n=11       \\ \hline
+cond A1 & 3.5740e+05 & 8.7385e+07 & 2.2739e+10 & 6.5185e+12 \\ \hline
+cond A2 & 4.7661e+05 & 4.7537e+08 & 4.9315e+11 & 5.2202e+14 \\ \hline
+\end{tabular}
+\end{table}
+可以看出，$n$越大，两个矩阵的条件数越大，且Hilbert矩阵的增长速度明显大于Vandermonde矩阵。
+
+这两个矩阵的条件数都远远大于1，因此这两矩阵是病态的。
+
+依题目要求，在不同n值的情况下，加入不同的扰动，计算出的结果统计如下表所示：
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=5 A扰动 & 1e-10                                                                                                                                   & 1e-8                                                                                                                                    & 1e-6                                                                                                                                    \\ \hline
+x1      & \begin{tabular}[c]{@{}l@{}}0.999999928497779\\ 1.00000025109076\\ 0.999999670407408\\ 1.00000019167177\\ 0.999999958332282\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.999992850027616\\ 1.00002510823598\\ 0.999967041794948\\ 1.00001916659179\\ 0.999995833349670\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.999285297790269\\ 1.00250978759627\\ 0.996705539348900\\ 1.00191586839354\\ 0.999583506871030\end{tabular} \\ \hline
+x2      & \begin{tabular}[c]{@{}l@{}}0.999999937000235\\ 1.00000125999511\\ 0.999994330022462\\ 1.00000881996460\\ 0.999995590017859\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.999993702777033\\ 1.00012594445916\\ 0.999433249934216\\ 1.00088161121299\\ 0.999559194393668\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.999396609520115\\ 1.01206780959752\\ 0.945694856811606\\ 1.08447466718149\\ 0.957762666409413\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=5 b扰动 & 1e-10                                                                                                                                  & 1e-8                                                                                                                                   & 1e-6                                                                                                                                   \\ \hline
+x1      & \begin{tabular}[c]{@{}l@{}}1.00000007149698\\ 0.999999748926741\\ 1.00000032957080\\ 0.999999808340230\\ 1.00000004166525\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.00000714999837\\ 0.999974891672003\\ 1.00003295832681\\ 0.999980833336847\\ 1.00000416666596\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.00071499999482\\ 0.997489166684004\\ 1.00329583331167\\ 0.998083333345308\\ 1.00041666666420\end{tabular} \\ \hline
+x2      & \begin{tabular}[c]{@{}l@{}}1.00000006299996\\ 0.999998740000632\\ 1.00000566999761\\ 0.999991180003263\\ 1.00000440999853\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.00000629999999\\ 0.999874000000103\\ 1.00056699999999\\ 0.999117999999560\\ 1.00044100000038\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.00062999999997\\ 0.987400000000360\\ 1.05669999999884\\ 0.911800000001346\\ 1.04409999999949\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=7 A扰动 & 1e-10                                                                                                                                                                          & 1e-8                                                                                                                                                                           & 1e-6                                                                                                                                                                            \\ \hline
+x1      & \begin{tabular}[c]{@{}l@{}}0.999999499473406\\ 1.00000244888018\\ 0.999995027181337\\ 1.00000536486440\\ 0.999996756777021\\ 1.00000104171942\\ 0.999999861104238\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.999949950645062\\ 1.00024487184613\\ 0.999502750846092\\ 1.00053645142822\\ 0.999675698619076\\ 1.00010416532538\\ 0.999986111290040\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.995001941707229\\ 1.02445353695199\\ 0.950343411528071\\ 1.05357142900001\\ 0.967614424153913\\ 1.01040221922150\\ 0.998613037437293\end{tabular}  \\ \hline
+x2      & \begin{tabular}[c]{@{}l@{}}0.999998800124475\\ 1.00005039475708\\ 0.999496052533493\\ 1.00201578955801\\ 0.996220395023040\\ 1.00332605206947\\ 0.998891316060928\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.999891880293464\\ 1.00454102765866\\ 0.954589723524054\\ 1.18164110557645\\ 0.659422927516681\\ 1.29970782345517\\ 0.900097392271126\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.999007197895274\\ 1.04169768837525\\ 0.583023116411334\\ 2.66790753386753\\ -2.12732662529561\\ 3.75204742976538\\ 0.0826508568793309\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=7 b扰动 & 1e-10                                                                                                                                                                         & 1e-8                                                                                                                                                                          & 1e-6                                                                                                                                                                          \\ \hline
+x1      & \begin{tabular}[c]{@{}l@{}}1.00000050048887\\ 0.999997551298745\\ 1.00000497246815\\ 0.999994635498678\\ 1.00000324301318\\ 0.999998958344739\\ 1.00000013888764\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.00005004995820\\ 0.999755125206632\\ 1.00049725513320\\ 0.999463542123549\\ 1.00032430527964\\ 0.999895833421559\\ 1.00001388887722\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.00500499986614\\ 0.975512500626693\\ 1.04972555434088\\ 0.946354167914376\\ 1.03243055483908\\ 0.989583333551454\\ 1.00138888886138\end{tabular} \\ \hline
+x2      & \begin{tabular}[c]{@{}l@{}}1.00000120119277\\ 0.999949549888833\\ 1.00050450121579\\ 0.997981994829239\\ 1.00378376013885\\ 0.996670290768006\\ 1.00110990316130\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.00012011999382\\ 0.994954960245747\\ 1.05045039763952\\ 0.798198409155802\\ 1.37837798324516\\ 0.667027374456577\\ 1.11099087525906\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.01201200004809\\ 0.495495998065503\\ 6.04504001872822\\ -19.1801600730510\\ 38.8378001342445\\ -32.2972641162102\\ 12.0990880382106\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=9 A扰动 & 1e-10                                                                                                                                                                                                                  & 1e-8                                                                                                                                                                                                                   & 1e-6                                                                                                                                                                                                                     \\ \hline
+x1      & \begin{tabular}[c]{@{}l@{}}0.999997542501161\\ 1.00001500086016\\ 0.999960116194742\\ 1.00006033074736\\ 0.999943208746394\\ 1.00003406796918\\ 0.999987280938215\\ 1.00000270216756\\ 0.999999749875228\end{tabular}  & \begin{tabular}[c]{@{}l@{}}0.999756867022327\\ 1.00148452538750\\ 0.996051868814822\\ 1.00597391995029\\ 0.994374908415262\\ 1.00337538349365\\ 0.998739445840160\\ 1.00026788514322\\ 0.999975195932771\end{tabular}  & \begin{tabular}[c]{@{}l@{}}0.975750116090522\\ 1.14806597244386\\ 0.606213262215019\\ 1.59584159509339\\ 0.438948214712039\\ 1.33666535155499\\ 0.874270042098089\\ 1.02671947079277\\ 0.997525974999321\end{tabular}    \\ \hline
+x2      & \begin{tabular}[c]{@{}l@{}}0.999982928009930\\ 1.00122918254710\\ 0.978489314804997\\ 1.15774497254363\\ 0.408456506662986\\ 2.23041020859133\\ -0.435478329497796\\ 1.87886415669299\\ 0.780283987719148\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.999924964656596\\ 1.00540254400284\\ 0.905455488703753\\ 1.69332636921616\\ -1.59997375048907\\ 6.40794518201983\\ -5.30926917336949\\ 4.86281775783593\\ 0.0342955821333097\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.999922327471624\\ 1.00559242132158\\ 0.902132635597343\\ 1.71769395890258\\ -1.69135221270623\\ 6.59801238518553\\ -5.53101424561936\\ 4.99858004802688\\ 0.000355009344432205\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=9 b扰动 & 1e-10                                                                                                                                                                                                                  & 1e-8                                                                                                                                                                                                                 & 1e-6                                                                                                                                                                                                                 \\ \hline
+x1      & \begin{tabular}[c]{@{}l@{}}1.00000242855558\\ 0.999985171921619\\ 1.00003943507414\\ 0.999940331486341\\ 1.00005618380383\\ 0.999966286685977\\ 1.00001259034795\\ 0.999997324383267\\ 1.00000024774129\end{tabular}   & \begin{tabular}[c]{@{}l@{}}1.00024307303559\\ 0.998515830428008\\ 1.00394721257429\\ 0.994027427304686\\ 1.00562386382179\\ 0.996625328449687\\ 1.00126029761427\\ 0.999732167383157\\ 1.00002479938853\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.02430997323200\\ 0.851567123916966\\ 1.39476255212680\\ 0.402681860539590\\ 1.56244214890294\\ 0.662500326264429\\ 1.12604154838692\\ 0.973214310085535\\ 1.00248015654482\end{tabular} \\ \hline
+x2      & \begin{tabular}[c]{@{}l@{}}1.00002187876656\\ 0.998424728059455\\ 1.02756726875922\\ 0.797839973342318\\ 1.75810026685910\\ -0.576848838523256\\ 2.83965725338261\\ -0.126320909682138\\ 1.28158025787454\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.00218789539489\\ 0.842471530232240\\ 3.75674825411853\\ -19.2161541159797\\ 76.8105788353668\\ -156.686005701666\\ 184.967008479288\\ -111.632863345846\\ 29.1582160649736\end{tabular} & \begin{tabular}[c]{@{}l@{}}1.21878955730390\\ -14.7528481860260\\ 276.674845627009\\ -2020.61555451928\\ 7582.05840370281\\ -15767.6016254906\\ 18397.7020534570\\ -11262.2870594441\\ 2816.82178489535\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+在以上表格中可以看出：
+\begin{itemize}
+    \item{在$n$（条件数）固定的前提下，对$A,b$加入的扰动越大，计算的数值结果与正确结果偏差越大。}
+    \item{在对$A,b$加入的扰动固定的情况下，$n$（条件数）越大，计算的数值结果与正确结果偏差越大。}
+\end{itemize}
+
+\subsection{(3)}
+在MATLAB中计算$\frac{||x-\widetilde{x}||}{||x||}$统计数据如下：
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=5 A扰动 & 1e-10                & 1e-8                 & 1e-6                \\ \hline
+deltax1 & 2.07492014778727e-07 & 2.07485330326969e-05 & 0.00207399721487008 \\ \hline
+deltax2 & 5.11820124651315e-06 & 0.000511596562207495 & 0.0490204170311345  \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=5 b扰动 & 1e-10                & 1e-8                 & 1e-6                \\ \hline
+deltax1 & 2.07478178099712e-07 & 2.07486095898347e-05 & 0.00207486136047175 \\ \hline
+deltax2 & 5.11821980291673e-06 & 0.000511822174406925 & 0.0511822174188975  \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=7 A扰动 & 1e-10                & 1e-8                 & 1e-6               \\ \hline
+deltax1 & 3.19332346182143e-06 & 0.000319311471720422 & 0.0318872706189846 \\ \hline
+deltax2 & 0.00210092251471574  & 0.189312391051443    & 1.73834861180689   \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=7 b扰动 & 1e-10                & 1e-8                 & 1e-6               \\ \hline
+deltax1 & 3.19310441910646e-06 & 0.000319315310988476 & 0.0319315574834335 \\ \hline
+deltax2 & 0.00210323228755759  & 0.210324318783057    & 21.0324328796005   \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=9 A扰动 & 1e-10                & 1e-8                & 1e-6              \\ \hline
+deltax1 & 3.33609784027688e-05 & 0.00330377952328433 & 0.329521121951531 \\ \hline
+deltax2 & 0.728045789880671    & 3.19993450387683    & 3.31239914567981  \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+n=9 b扰动 & 1e-10                & 1e-8                & 1e-6              \\ \hline
+deltax1 & 3.29986041841976e-05 & 0.00330304417304634 & 0.330337709810490 \\ \hline
+deltax2 & 0.933037121444716    & 93.3043674528254    & 9330.43736122720  \\ \hline
+\end{tabular}
+\end{table}
+在MATLAB中使用如下代码验证，所有数据均满足
+$$\frac{||\delta x||}{||x||} \approx cond(A)*\frac{||\delta A||}{||A||}$$
+即A的条件数越大,(由A的扰动引起的)x的误差越大。
+
+$$\frac{||\delta x||}{||x||} \leq cond(A)*\frac{||\delta b||}{||b||}$$
+即A的条件数越大,(由b的扰动引起的)x的误差可能越大。
+
+总体来看，x的(相对)误差不超过b的(相对)误差的Cond(A)倍, 也大致上是A的(相对)误差的Cond(A)倍，因此我们可以通过条件数来更加简便的判断计算所得的数值结果的误差范围数量级。
+\begin{lstlisting}
+%% Global Variables
+n = 5;
+epsilon = 1e-10;
+disturbA = 0; % 为1则A扰动 为0则b扰动
+
+%% Cal
+
+originalA1 = generateA1(n);
+originalA2 = hilb(n);
+
+originalb1 = cal(originalA1);
+originalb2 = cal(originalA2);
+
+A1 = originalA1;
+A2 = originalA2;
+b1 = originalb1;
+b2 = originalb2;
+
+if disturbA
+    A1(n,n) = A1(n,n) + epsilon;
+    A2(n,n) = A2(n,n) + epsilon;
+else
+    b1(n,1) = b1(n,1) + epsilon;
+    b2(n,1) = b2(n,1) + epsilon;
+end
+
+
+x1 = A1\b1;
+x2 = A2\b2;
+
+originalx = ones(n,1);
+
+condA1 = cond(originalA1)
+deltaA1 = norm(originalA1-A1)/norm(originalA1)
+deltab1 = norm(originalb1-b1)/norm(originalb1)
+deltax1 = norm(originalx-x1)/norm(originalx)
+
+condA2 = cond(originalA2)
+deltaA2 = norm(originalA2-A2)/norm(originalA2)
+deltab2 = norm(originalb2-b2)/norm(originalb2)
+deltax2 = norm(originalx-x2)/norm(originalx)
+
+if disturbA
+    check1 = condA1*deltaA1/deltax1
+    check2 = condA2*deltaA2/deltax2
+else 
+    check1 = condA1*deltab1/deltax1
+    check2 = condA2*deltab2/deltax2
+end
+\end{lstlisting}
+
+
+\section{CH5-T3 迭代法}
+\subsection{(1)}
+通过随机生成右端向量$b$以及初始向量$x^{(0)}$,并设定不同的迭代误差要求统计得到如下数据：
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline  
+迭代方法        & 随机生成x0和b的范围                       & 精度要求                    & 迭代步数 \\ \hline
+Jacob       & \multirow{2}{*}{{[}0,1{]}}        & \multirow{2}{*}{1e-10}  & 32   \\ \cline{1-1} \cline{4-4} 
+GaussSeidel &                                   &                         & 21   \\ \hline
+Jacob       & \multirow{2}{*}{{[}100,1000{]}}   & \multirow{2}{*}{1e-10}  & 42   \\ \cline{1-1} \cline{4-4} 
+GaussSeidel &                                   &                         & 26   \\ \hline
+Jacob       & \multirow{2}{*}{{[}0,1{]}}        & \multirow{2}{*}{1e-100} & 53   \\ \cline{1-1} \cline{4-4} 
+GaussSeidel &                                   &                         & 33   \\ \hline
+Jacob       & \multirow{2}{*}{{[}100,1000{]}}   & \multirow{2}{*}{1e-100} & 55   \\ \cline{1-1} \cline{4-4} 
+GaussSeidel &                                   &                         & 32   \\ \hline
+Jacob       & \multirow{2}{*}{{[}-5000,5000{]}} & \multirow{2}{*}{1e-100} & 54   \\ \cline{1-1} \cline{4-4} 
+GaussSeidel &                                   &                         & 33   \\ \hline
+\end{tabular}
+\end{table}
+可以看出，两种方法的迭代步数与误差要求程正相关，数据精度要求越高，需要迭代的步数越大，也可以通过对比看出，迭代步数与右端向量$b$以及初始向量$x^{(0)}$的数据范围没有明显关系。
+
+同时，可以看到GaussSeidel方法使用的迭代步数要小于Jacob方法的，这是因为在Jacob的每一步迭代中，采用的全部是上一步的数据，而在GaussSeidel方法中，部分数据采用了当前步生成的数据，更加有效地利用了数据，避免了“弯路”，所以GaussSeidel方法使用的迭代步数要小于Jacob方法。
+
+MATLAB代码如下：
+\begin{lstlisting}
+%% Init
+clc;
+clear;
+
+%% Global Variables
+n = 20; % 矩阵阶数
+range = [-5000, 5000]; % 随机数范围
+epsilon = 1e-100; % 误差要求
+M = 200; % 迭代最大步数
+
+%% Cal
+a1 = sparse(1:n,1:n,3,n,n);
+a2 = sparse(1:n-1,2:n,-1/2,n,n);
+a3 = sparse(1:n-2,3:n,-1/4,n,n);
+A = a1+a2+a3+a2'+a3';
+
+b = range(1) + (range(2)-range(1)).*rand(n,1);
+x0 = range(1) + (range(2)-range(1)).*rand(n,1);
+
+[xJ, stepJ, sequenceJ] = Jacobi(A,b,x0,epsilon,M);
+[xG, stepG, sequenceG] = GaussSeidel(A,b,x0,epsilon,M);
+\end{lstlisting}
+\subsection{(2)}
+
+MATLAB代码实现如下：
+\begin{lstlisting}
+%% Init
+clc;
+clear;
+
+%% Global Variables
+n = 20; % 矩阵阶数
+range = [0, 100]; % 随机数范围
+epsilon = 1e-5; % 误差要求
+M = 200; % 迭代最大步数
+cycle = 15;
+%% Cal
+a1 = sparse(1:n,1:n,3,n,n);
+a2 = sparse(1:n-1,2:n,-1/2,n,n);
+a3 = sparse(1:n-2,3:n,-1/4,n,n);
+
+b = range(1) + (range(2)-range(1)).*rand(n,1);
+x0 = range(1) + (range(2)-range(1)).*rand(n,1);
+
+step = zeros(cycle,1);
+normB = zeros(cycle, 1);
+
+for i = 1:cycle
+A = 2^(i-1).*a1+a2+a3+a2'+a3';
+[~, step(i,1), ~,normB(i,1)] = Jacobi(A,b,x0,epsilon,M);
+end
+\end{lstlisting}
+按照题目要求进行了15轮求解，使用Jacob方法每轮step的数据如下：
+\begin{table}[H]
+\centering
+\begin{tabular}{l|l|l}
+I                                                                                                       & step                                                                                                 & ||B||                                                                                                                                                                                                                                                                                                                                                                        \\ \hline
+\begin{tabular}[c]{@{}l@{}}1\\ 2\\ 3\\ 4\\ 5\\ 6\\ 7\\ 8\\ 9\\ 10\\ 11\\ 12\\ 13\\ 14\\ 15\end{tabular} & \begin{tabular}[c]{@{}l@{}}24\\ 13\\ 10\\ 8\\ 6\\ 6\\ 5\\ 5\\ 4\\ 4\\ 4\\ 4\\ 3\\ 3\\ 3\end{tabular} & \begin{tabular}[c]{@{}l@{}}0.489306191807942\\ 0.244653095903971\\ 0.122326547951986\\ 0.0611632739759928\\ 0.0305816369879964\\ 0.0152908184939982\\ 0.00764540924699909\\ 0.00382270462349955\\ 0.00191135231174977\\ 0.000955676155874887\\ 0.000477838077937443\\ 0.000238919038968722\\ 0.000119459519484361\\ 5.97297597421804e-05\\ 2.98648798710902e-05\end{tabular}
+\end{tabular}
+\end{table}
+可以看出，随着主对角线元素不断增大，达到某一给定的误差精度所需要的迭代步数会不断减少，收敛速度不断增加。
+
+在迭代法中，如果$||B||=q<1$，则迭代公式$x^{(k+1)}=Bx^{(k)}+f$收敛，且$||x^{(k+1)}-x^*||\leq\frac{q}{1-q}||x^{(k+1)}-x^{(k)}||$,即$q$越小，收敛越快。
+
+在本题中，当主对角元素不断增大的时候，使用Jacob方法计算出来的B矩阵的模如表中所示，可以看出，$||B||$在不断减小，因此使得收敛速度不断增加。
+
+\section{CH5-T9 种群}
+\subsection{(1)}
+根据题目意义。如果需要稳定收获，即$\widetilde x_k=x_k$,则针对$x_k(k=1,2,...,n)$可列出如下线性方程组：
+
+
+$$\sum_{k=1}^nb_kx_k = x_1 $$
+$$s_kx_k-h_k = x_{k+1},\quad k=1,2...,n-1 $$
+
+
+设：
+
+$$x=(x_1,x_2,...,x_n)^T$$
+$$h=(0,h_1,h_2,...,h_{n-1})^T$$
+
+\begin{equation}
+S=
+\begin{bmatrix}
+b_1 & b_2 & \cdots &\cdots & b_n\\
+s_1 & 0 & \cdots &\cdots & 0\\
+0 & s_2 &&&\vdots\\
+\vdots &&\ddots&&\vdots\\
+0&\cdots&0&s_{n-1}&0
+\end{bmatrix}
+\end{equation}
+
+因此，上述线性方程组模型即可化为所求个年龄的稳定种群数量模型:
+
+$$Sx-h=x$$
+
+\subsection{(2)}
+令$A = S-I$，则模型可以表示为$Ax=h$，通过计算得到矩阵A的条件数为87，大于1，因此稍显病态，说明矩阵A以及向量h的微小扰动会给x的计算结果带来较大的变化。
+
+当$h_1,\cdots,h_5 = 500, 400, 200, 100, 100$时，计算可得到：
+$$x=(8481.0, 2892.4, 1335.4, 601.3, 140.5)^T$$
+
+误差为$-3.7e-13$，说明结果较为准确。
+
+\subsection{(3)}
+
+当$h_1,\cdots,h_5 = 500$时，计算可得到：
+$$x=(11772.1, 4208.8, 2025.3, 715.1, -213.9)^T$$
+
+误差为$8.5e-13$，说明结果较为准确。
+
+注意到$x_5=-213.9<0$，在实际情况中不可能使得种群数量为负数。因此题目中要求的$h_1,\cdots,h_5 = 500$在当前参数设定下不可能达到。
+
+通过人工控制的方式改变物种的死亡率(例如提高生活环境质量)可以达到预期的收获率:假设我们将$s_4$提高为 0.9，可以得到：
+$$x=(11772.1, 4208.8, 2025.3, 715.1, 143.6)^T$$
+
+因此，当提高自然存活率$s_4=0.9$，并且种群数量设定为上述数值后，可以使得$h_1,\cdots,h_5 = 500$。
+
+\subsection{MATLAB代码}
+\begin{lstlisting}
+%% Global Variables
+b = [0 0 5 3 0];
+s = [0.4 0.6 0.6 0.9];
+% h = [0; 500; 400; 200; 100];
+h = [500; 500; 500; 500; 500];
+%% Cal
+S = [b; [diag(s) zeros(length(s), 1)]];
+A = S - eye(length(b));
+fprintf('Cond(A) = %f\n', cond(A));
+x = A\h
+err = sum(sum(A * x - h))
+\end{lstlisting}
+
+\newpage
+\section{收获和建议}
+通过这次的实验，我对 MATLAB 中提供线性方程组求解函数理解更加深刻，通过实际编程、画图的方式观察了方程求解的结果，这是书本上无法学到的知识。同时，在做上机实验的过程中，我对MATLAB这款软件的使用也更加熟练了。希望在之后的课堂上老师能够当堂进行相关的技巧演示并给出题目的分步解答。
+\end{document}
