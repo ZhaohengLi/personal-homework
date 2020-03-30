@@ -1,10 +1,10 @@
 # Fdb version 3
-["xdvipdfmx"] 1585574442 "homework.xdv" "homework.pdf" "homework" 1585574444
+["xdvipdfmx"] 1585574442 "homework.xdv" "homework.pdf" "homework" 1585574658
   "homework.xdv" 1585574442 102580 a086366119c3e4a8f509976dbebbdd7a "xelatex"
   (generated)
   "homework.pdf"
-["xelatex"] 1585574441 "homework.tex" "homework.xdv" "homework" 1585574444
-  "/dev/null" 1585574442 0 d41d8cd98f00b204e9800998ecf8427e ""
+["xelatex"] 1585574441 "homework.tex" "homework.xdv" "homework" 1585574658
+  "/dev/null" 1585574657 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -93,6 +93,6 @@
   "pic84.png" 1585568306 294244 1c9f7fad9466962fc0729b798e6f5008 ""
   "pic85.png" 1585569404 736533 3945b35e4f97730013f1ec8808ea4686 ""
   (generated)
+  "homework.aux"
   "homework.xdv"
   "homework.log"
-  "homework.aux"
