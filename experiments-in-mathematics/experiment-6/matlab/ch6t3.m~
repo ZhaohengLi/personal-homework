@@ -1,0 +1,18 @@
+%% Global Variables
+x0 = 15;
+a = 0.1;
+k = 15;
+
+%% Cal
+init = 0.1;
+r = fzero(@rate,init,[],x0,a,k,0)
+
+%% Func
+function y = rate(r,x0,a,k,byMonth)
+    % x_k=(1+r)^k*x_0-a*\frac{(1+r)^k-1}{r}
+    if (byMonth)
+        y = (1+r)^(k*12)*x0-a*((1+r)^k-1)/r;
+    else
+        y = (1+r)^k*x0-a*((1+r)^k-1)/r;
+    end
+end
