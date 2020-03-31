@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\geometry{a4paper, scale=0.8}
+
+\title{概率论与数理统计第五次作业}
+\author{ZhaohengLi 2017050025}
+
+\begin{document}
+\maketitle
+
+\section{2.5.6}
+设$X$为圆盘的直径，则圆盘的面积为$Y=\pi \frac{X^2}{4}$，所以平均面积计算如下。
+
+$$E(X^2)=\int_a^bx^2p(x)dx=\int_a^bx^2\frac{1}{b-a}dx=\frac{1}{3}(a^2+b^2+ab)$$
+$$E(Y)=\frac{\pi}{4}E(X^2)=\frac{\pi}{12}(a^2+b^2+ab)$$
+
+\section{2.5.10}
+设设备在一年内损坏的概率为$p$，则：
+
+$$p=P(X\leq 1)=\int_0^10.25e^{-0.25x}dx=0.2212$$
+
+设每台设备的利润为$Y$，那么：
+
+$$E(Y)=100-300p=33.64$$
+
+因此每台设备的平均利润为33.64元。
+
+\section{2.5.11}
+因为每次来到银行发生的事情是独立的，因此$Y\sim B(5,p)$，其中$p=P(X>10)=e^{-2}$。因此有：
+
+$$P(Y\geq 1)=1-P(Y<1)=1-P(Y=0)=1-(1-p)^5=1-(1-e^{-2})^5=0.5167$$
+
+\section{2.5.17}
+（1）由题目可以得到：
+
+$$P(X\leq 70)=0.5=\Phi (\frac{70-\mu}{\sigma})$$
+$$P(X\leq 60)=0.25=\Phi (\frac{60-\mu}{\sigma})$$
+
+查表解得$\mu = 70,\sigma = 14.81$
+
+
+（2）设$Y$为5名男子中体重超过65kg的男子数量，则$Y\sim B(5,p)$，其中；
+
+$$p=P(X\geq65)=1-P(X<65)=1-\Phi(\frac{65-70}{14.81})=\Phi(0.3376)=0.6324$$
+
+则有：
+
+$$P(Y\geq2)=1-P(X<2)=1-(1-p)^5-5*p*(1-p)^4=0.94$$
+
+\section{2.5.19}
+
+由题意可得：
+
+$$P(X>96)=0.023=1-\Phi(\frac{96-\mu}{\sigma})=1-\Phi(\frac{96-72}{\sigma})$$
+
+通过反查表可得到：
+
+$$\frac{96-72}{\sigma}=2$$
+
+解得$\sigma=12$，从而得到$X\sim N(72,12^2)$。
+
+$$P(60<X<84)=\Phi(\frac{84-72}{12})-\Phi(\frac{60-72}{12})=2\Phi(1)-1=0.6826$$
+
+\section{2.5.30}
+
+$$E|X-\mu|=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}|x-\mu|e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx$$
+
+利用$t=\frac{x-\mu}{\sigma}$，化简为：
+
+$$E|X-\mu|=\sigma\sqrt{\frac{2}{\pi}}\int_0^{+\infty}e^{-\frac{t^2}{2}}d(\frac{t^2}{2})=\sigma\sqrt{\frac{2}{\pi}}$$
+
+\section{2.5.32}
+
+$$P(X<4)=0.25*\int^{4}_{0}\frac{0.25}{\Gamma(2)}xe^{-\frac{x}{2}}dx=0.25*\int^{4}_{0}0.25*xe^{-\frac{x}{2}}dx=0.5940$$
+\section{补充}
+几何分布的分布列函数为：
+
+$$P(X=k)=(1-p)^{k-1}p,\quad k=1,2,\cdots.$$
+
+其矩母函数函数为：
+
+$$M(t)=\sum_{k=1}^{\infty}(1-p)^{k-1}pe^{tk}=\frac{pe^t}{1-(1-p)e^t}$$
+
+三阶矩为：
+
+$$E(X^3)=M'''(0)={{1}\over{p}}-{{6}\over{p^2}}+{{6}\over{p^3}}$$
+
+标准正态分布的密度函数为：
+
+$$\phi (u)=\frac1{\sqrt{2\pi}}e^{-\frac{u^2}{2}},\quad -\infty<u<+\infty$$
+
+其矩母函数函数为：
+
+$$M(t)=\int_{-\infty}^{+\infty}\frac1{\sqrt{2\pi}}e^{-\frac{u^2}{2}}e^{tu}du=e^{\frac{t^2}{2}}$$
+
+三阶矩为：
+$$M'''(t) = \left(t^3+3\,t\right)\,e^{{{t^2}\over{2}}}$$
+
+$$E(X^3)=M'''(0)=0$$
+
+\end{document}
+
+
