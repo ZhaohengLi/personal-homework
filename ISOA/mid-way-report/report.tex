@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\geometry{a4paper, scale=0.8}
+
+\title{概率论与数理统计第四次作业}
+\author{ZhaohengLi 2017050025}
+
+\begin{document}
+\maketitle
+
+\section{项目介绍}
+\section{项目特点}
+\begin{itemize}
+	\item{\textbf{疫情时序数据的维护与展示}\\
+	目前主流信息平台微博客户端、新闻网站等提供的信息主要为即时疫情信息，当用户需要了解疫情舆论发展动态或梳理疫情发展趋势时，这就需要使用长时间记录的时序数据，并且目前这种长期的变化数据并不容易获取。}
+	\item{\textbf{互动性的舆论判别以及结合人工智能判别与相关真相/谣言推荐的谣言判断系统}\\
+	支付宝等平台给出了一些新闻真伪的数据，但它的吸引力并不如它的可靠度那么高。我们更希望获取实时、实地有关的舆论判别，并通过互动式的舆论判别来知道一些自己关心事项的真实程度，并结合政策动态来作出决策。}
+	\item{\textbf{在舆论发展序列中提取群众关注热点变化}}\\
+	通过对各大平台上发布的新闻、评论数据进行收集，分析群众关注热点在时序上的变化，展示舆论热点随时间上的迁移。
+
+
+
+\end{itemize}
+
+\section{用户群体}
+\begin{itemize}
+	\item{希望获得“热搜”以外长期信息的用户。}
+	\item{获取信息来源较少、受“浙江十万只鸭派往巴基斯坦治蝗”、“双黄连口服液可抑制新型冠状病毒”等即时热搜影响较大的用户。}
+	\item{对地区(不仅限当地)信息、政策更关心的用户。}
+	\item{希望利用疫情发展、群众舆论与关注点发展变化的用户。}
+\end{itemize}
+
+\section{项目结构}
+\newpage
+\section{关键技术}
+\subsection{谣言判断}
+\begin{itemize}
+	\item{词粒度语义信息提取}
+	\item{多头注意力+卷积轻量级模型挂载服务}
+	\item{相关谣言辅助识别}
+\end{itemize}
+
+\subsection{舆论热点迁移}
+
+\begin{itemize}
+	\item{LDA主题模型提取舆论中的关注热点}
+	\item{对指定时间粒度上的舆论进行综合分析以及话题提取}
+	\item{对话题的“生命周期”、“生长趋势”以及“活跃程度”进行分析}
+	\item{对各个热点或话题的交替浮现进行分析与展示}
+\end{itemize}
+
+
+\section{项目进展}
+目前项目按照初期制定的工作计划稳步前进，接下来的计划不会有大的改变，但会增加以下内容：
+\begin{itemize}
+	\item{优化舆论热点迁移的分析过程以及展示方式}
+	\item{进行简单的用户实验并听取用户感受改进项目}
+\end{itemize}
+
+
+\end{document}
