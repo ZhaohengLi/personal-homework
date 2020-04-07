@@ -1,0 +1,351 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{diagbox}
+\geometry{a4paper, scale=0.8}
+
+\title{概率论与数理统计第六次作业}
+\author{ZhaohengLi 2017050025}
+
+\begin{document}
+\maketitle
+
+\section{2.6.1}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Y & 0   & 1    & 4   & 9     \\ \hline
+P & 1/5 & 7/30 & 1/5 & 11/30 \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Z & 0   & 1    & 3   & 3     \\ \hline
+P & 1/5 & 7/30 & 1/5 & 11/30 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{2.6.5}
+X的密度函数为
+
+\begin{equation}
+p_X(x)=
+\left\{
+\begin{aligned}
+1/\pi,\quad & -\pi/2<x<\pi/2 \\
+0,\quad & others
+\end{aligned}
+\right.
+\end{equation}
+
+
+按照定义进行分析计算，由于函数的对称性可得到：
+
+$$F_Y(y)=P(Y\leq y)=\int_{-\pi/2}^{-arccosy}\frac1\pi dx+\int^{\pi/2}_{arccosy}\frac1\pi dx$$
+
+对上式求导可以得到：
+
+$$p_Y(y)=\frac{1}{\pi\sqrt{1-y^2}}+\frac{1}{\pi\sqrt{1-y^2}}=\frac{2}{\pi\sqrt{1-y^2}},\quad 0<y<1$$
+
+整理可得：
+
+\begin{equation}
+p(y)=\left\{
+\begin{aligned}
+\frac{2}{\pi\sqrt{1-y^2}},\quad & 0<y<1\\
+0,\quad & others
+\end{aligned}
+\right.
+\end{equation}
+
+\section{2.6.11}
+(1)
+
+\begin{equation}
+p_Y(y)=\left\{
+\begin{aligned}
+&p_X(\frac{y}{3})|\frac{1}{3}|,\quad & -3<y<3 \\
+&0,\quad & others
+\end{aligned}
+\right.
+=\left\{
+\begin{aligned}
+&\frac{y^2}{18},\quad & -3<y<3 \\
+&0,\quad & others
+\end{aligned}
+\right.
+\end{equation}
+
+
+(2)
+\begin{equation}
+p_Y(y)=\left\{
+\begin{aligned}
+&p_X(3-y)|-1|,\quad & 2<y<4 \\
+&0,\quad & others
+\end{aligned}
+\right.
+=\left\{
+\begin{aligned}
+&\frac 32(3-y)^2,\quad & 2<y<4 \\
+&0,\quad & others
+\end{aligned}
+\right.
+\end{equation}
+
+
+(3)
+\begin{equation}
+p_Y(y)=\left\{
+\begin{aligned}
+&p_X(\sqrt y)\frac{1}{2\sqrt{y}}+p_X(\sqrt {-y})\frac{1}{2\sqrt{y}},\quad & 0<y<1 \\
+&0,\quad & others
+\end{aligned}
+\right.
+=\left\{
+\begin{aligned}
+&\frac 3 2 \sqrt y,\quad & 0<y<1 \\
+&0,\quad & others
+\end{aligned}
+\right.
+\end{equation}
+
+
+
+
+\section{2.6.16}
+因为X的密度函数为：
+
+\begin{equation}
+p_Y(y)=\left\{
+\begin{aligned}
+&2e^{-2x},\quad & x>0 \\
+&0,\quad & others
+\end{aligned}
+\right.
+\end{equation}
+
+又因为$Y_1$的取值范围为$(0,1)$，且$y_1=e^{-2x}$是严格单调减函数，所以有：
+
+\begin{equation}
+p_{Y_1}(y)=\left\{
+\begin{aligned}
+&p_X(-0.5lny_1)|\frac{-0.5}{y_1}|,\quad & 0<y_1<1 \\
+&0,\quad & others
+\end{aligned}
+\right.
+=\left\{
+\begin{aligned}
+&1,\quad & 0<y_1<1 \\
+&0,\quad & others
+\end{aligned}
+\right.
+\end{equation}
+
+即$Y_1\sim U(0,1)$。
+
+设$Y_2=1-e^{-2X}=1-Y_1$，
+
+\begin{equation}
+p_{Y_2}(y)=\left\{
+\begin{aligned}
+&p_{Y_1}(1-y_2)|-1|,\quad & 0<y_2<1 \\
+&0,\quad & others
+\end{aligned}
+\right.
+=\left\{
+\begin{aligned}
+&1,\quad & 0<y_2<1 \\
+&0,\quad & others
+\end{aligned}
+\right.
+\end{equation}
+
+因此可以得到$Y_2\sim U(0,1)$，结论得证。
+
+\section{2.7.2}
+$$C_v(X)=\frac{\sqrt{Var(X)}}{E(X)}=\frac{\sqrt{a^2/12}}{a/2}=0.5774$$
+\section{2.7.5}
+首先求得矩母函数为：
+$$E(X^k)=\lambda \int_0^{+\infty}x^ke^{-\lambda x}dx=\frac{k!}{\lambda^k}$$
+
+根据矩母函数求的各阶原点矩为：
+$$\mu_1=E(X)=\frac{1}{\lambda}$$
+$$\mu_2=E(X^2)=\frac{2}{\lambda^2}$$
+$$\mu_3=E(X^3)=\frac{6}{\lambda^3}$$
+$$\mu_4=E(X^4)=\frac{24}{\lambda^4}$$
+
+$$v_1=0$$
+$$v_2=\mu_2-\mu_1^2=Var(X)=\frac{1}{\lambda^2}$$
+$$v_3=\mu_3-3\mu_2\mu_1+2\mu^3=\frac{2}{\lambda^3}$$
+$$v_4=\mu_4-4\mu_3\mu_1+6\mu_2\mu_1^2-3\mu_1^4=\frac{9}{\lambda^4}$$
+
+根据上述信息计算变异系数、偏度系数以及峰度系数：
+$$C_v(X)=\frac{\sqrt{Var(X)}}{E(X)}=\frac{\sqrt{1/\lambda^2}}{1/\lambda}=1$$
+$$\beta_s=\frac{v_3}{v_2^{3/2}}=\frac{2/\lambda^3}{(1/\lambda)^{3/2}}=2$$
+$$\beta_k=\frac{v_4}{v_2^2}-3=\frac{9/\lambda^4}{1/\lambda^4}-3=6$$
+
+
+\section{2.7.7}
+根据分位数的定义，可以得到：
+
+$$1-exp\{-(\frac{x}{\eta})^m\}=p$$
+
+解得：
+$$x_p=\eta[-ln(1-p)]^{1/m}$$
+
+当$m=1.5,\eta=1000$时，
+$$x_{0.1}=1000[-ln(1-0.1)]^{1/1.5}=223.08$$
+$$x_{0.5}=1000[-ln(1-0.5)]^{1/1.5}=783.22$$
+$$x_{0.8}=1000[-ln(1-0.8)]^{1/1.5}=1373.36$$
+
+
+\section{2.7.10}
+设$E(Y)=E[a+bX]=a+bE(X)$，
+$$\frac{E[Y-E(Y)]^3}{\{E[Y-E(Y)]^2\}^{3/2}}=\frac{E[a+bX-a-bE(X)]^3}{\{E[a+bX-a-bE(X)]^2\}^{3/2}}=\frac{E[X-E(X)]^3}{\{E[X-E(X)]^2\}^{3/2}}$$
+$$\frac{E[Y-E(Y)]^4}{\{E[Y-E(Y)]^2\}^{2}}=\frac{E[a+bX-a-bE(X)]^4}{\{E[a+bX-a-bE(X)]^2\}^{2}}=\frac{E[X-E(X)]^4}{\{E[X-E(X)]^2\}^{2}}$$
+
+因此Y与X有着相同的偏度系数和峰度系数。
+\section{3.1.1}
+（1）
+设取出的5件产品中有i件一等品，j件二等品。
+
+当$i=0,1,\cdots,5. j=0,1,\cdots,5. i+j\leq5$时，有分布列函数：
+
+$$P(X=i,Y=j)=\frac{C^i_{50}*C^j_{30}*C^{5-i-j}_{20}}{C^5_{200}}$$
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\diagbox{X}{Y}   & 0       & 1       & 2       & 3       & 4       & 5       & 行和      \\ \hline
+0  & 0.00021 & 0.00193 & 0.00659 & 0.01024 & 0.00728 & 0.00189 & 0.02814 \\ \hline
+1  & 0.00322 & 0.02271 & 0.05489 & 0.05393 & 0.01820 & 0.00000 & 0.15295 \\ \hline
+2  & 0.01855 & 0.09274 & 0.14156 & 0.06606 & 0.00000 & 0.00000 & 0.31891 \\ \hline
+3  & 0.04946 & 0.15620 & 0.11325 & 0.00000 & 0.00000 & 0.00000 & 0.31891 \\ \hline
+4  & 0.06118 & 0.09177 & 0.00000 & 0.00000 & 0.00000 & 0.00000 & 0.15295 \\ \hline
+5  & 0.02814 & 0.00000 & 0.00000 & 0.00000 & 0.00000 & 0.00000 & 0.02814 \\ \hline
+列和 & 0.16076 & 0.36535 & 0.31629 & 0.13023 & 0.02548 & 0.00189 & 1.00000 \\ \hline
+\end{tabular}
+\end{table}
+
+(2)
+设取出的5件产品中有i件一等品，j件二等品。
+
+当$i=0,1,\cdots,5. j=0,1,\cdots,5. i+j\leq5$时，有分布列函数：
+
+
+$$P(X=i,Y=j)=\frac{5!}{i!j!(5-i-j)!}(0.5)^i(0.3)^j(0.2)^{5-i-j}$$
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\diagbox{X}{Y}   & 0       & 1       & 2       & 3       & 4       & 5       & 行和      \\ \hline
+0  & 0.00032 & 0.00240 & 0.00720 & 0.01080 & 0.00810 & 0.00243 & 0.03125 \\ \hline
+1  & 0.00400 & 0.02400 & 0.05400 & 0.05400 & 0.02025 & 0.00000 & 0.15625 \\ \hline
+2  & 0.02000 & 0.09000 & 0.13500 & 0.06750 & 0.00000 & 0.00000 & 0.31250 \\ \hline
+3  & 0.05000 & 0.15000 & 0.11250 & 0.00000 & 0.00000 & 0.00000 & 0.31250 \\ \hline
+4  & 0.06250 & 0.09375 & 0.00000 & 0.00000 & 0.00000 & 0.00000 & 0.15625 \\ \hline
+5  & 0.03125 & 0.00000 & 0.00000 & 0.00000 & 0.00000 & 0.00000 & 0.03125 \\ \hline
+列和 & 0.16807 & 0.36015 & 0.30870 & 0.13230 & 0.02835 & 0.00243 & 1.00000 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{3.1.4}
+设$X_1,X_2$的分布列为：
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\diagbox{$X_1$}{$X_2$}   & -1  & 0   & 1   \\ \hline
+-1 & p11 & p12 & p13 \\ \hline
+0  & p21 & p22 & p23 \\ \hline
+1  & p31 & p32 & p33 \\ \hline
+\end{tabular}
+\end{table}
+
+由$P(X_1X_2=0)=1$可以得到$p12+p21+p22+p23+p32=1,p11=p13=p31=p33=0$
+
+由$P(X_1=-1)=0.25=P(X_1=-1,X_2=-1)+P(X_1=-1,X_2=0)+P(X_1=-1,X_2=1)=p11+p12+p13=p12$
+
+类似低可以得到$p32=p21=p23=0.25$
+
+由分布列的正则性可以得到$p22=0$，因此分布列为：
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\diagbox{$X_1$}{$X_2$}   & -1  & 0   & 1   \\ \hline
+-1 & 0 & 0.25 & 0 \\ \hline
+0  & 0.25 & 0 & 0.25 \\ \hline
+1  & 0 & 0.25 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{3.1.11}
+
+$$P(X_1=0,X_2=0)=P(Y\leq 1,Y\leq 2)=P(Y\leq 1)=1-e^{-1}=0.63212$$
+$$P(X_1=0,X_2=1)=P(Y\leq 1,Y> 2)=0$$
+$$P(X_1=1,X_2=0)=P(Y>1, Y\leq 2)=e^{-1}-e^{-2}=0.23254$$
+$$P(X_1=1,X_2=1)=P(Y>1,Y> 2)=e^{-2}=0.13534$$
+
+分布列为：
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\diagbox{$X_1$}{$X_2$}  & 0       & 1       \\ \hline
+0 & 0.63212 & 0       \\ \hline
+1 & 0.23254 & 0.13534 \\ \hline
+\end{tabular}
+\end{table}
+
+
+\section{3.2.9}
+
+根据题意还可以得到分布列函数为：
+
+$$P(X=i,Y=j)=P(X=i)P(Y=j)=C^i_2*0.2^i*0.8^{2-i}*C^j_2*0.5^i*0.5^{2-j}$$
+
+分布列为：
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\diagbox{X}{Y}   & 0  & 1   & 2   \\ \hline
+0 & 0.16 & 0.32 & 0.16 \\ \hline
+1  & 0.08 & 0.16 & 0.08 \\ \hline
+2  & 0.01 & 0.02 & 0.01 \\ \hline
+\end{tabular}
+\end{table}
+
+$P(X\leq Y)=0.16+0.32+0.16+0.16+0.08+0.01=0.89$
+
+\section{3.2.10}
+
+根据分布列可以得出：
+$$P(X=x_1)=a+c+1/9$$
+$$P(X=x_2)=b+4/9$$
+$$P(Y=y_1)=a+1/9$$
+$$P(Y=y_2)=b+1/9$$
+$$P(Y=y_3)=c+1/3$$
+
+根据X和Y的独立性可以得出：
+
+$$b=(b+4/9)(b+1/9)$$
+$$1/9=(b+4/9)(a+1/9)$$
+$$a+b+c=4/9$$
+
+解得$a=1/18,b=2/9,c=1/6$。
+
+\end{document}
+
+
