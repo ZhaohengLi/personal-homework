@@ -1,4 +1,4 @@
-PWD /Users/lizhaoheng/Projects/personal-homework/ISOA
+PWD /Users/lizhaoheng/Projects/personal-homework/ISOA/progress-report-1
 INPUT /usr/local/texlive/2019/texmf.cnf
 INPUT /usr/local/texlive/2019/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2019/texmf-var/web2c/xetex/xelatex.fmt
@@ -28,6 +28,8 @@ INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/graphics-def/xetex.def
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/graphics-def/xetex.def
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/ctex/ctex.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/ctex/ctex.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/l3kernel/expl3.sty

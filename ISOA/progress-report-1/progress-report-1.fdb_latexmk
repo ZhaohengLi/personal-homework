@@ -1,10 +1,10 @@
 # Fdb version 3
-["xdvipdfmx"] 1584232965 "progress-report-1.xdv" "progress-report-1.pdf" "progress-report-1" 1584232966
-  "progress-report-1.xdv" 1584232965 41908 94b3da158fa251b2d931e528adc2e4bb "xelatex"
+["xdvipdfmx"] 1586491091 "progress-report-1.xdv" "progress-report-1.pdf" "progress-report-1" 1586491092
+  "progress-report-1.xdv" 1586491091 41904 00d1037b2d8b2dd8335bba6adcdb7cad "xelatex"
   (generated)
   "progress-report-1.pdf"
-["xelatex"] 1584232964 "progress-report-1.tex" "progress-report-1.xdv" "progress-report-1" 1584232966
-  "/dev/null" 1584232966 0 d41d8cd98f00b204e9800998ecf8427e ""
+["xelatex"] 1586491090 "progress-report-1.tex" "progress-report-1.xdv" "progress-report-1" 1586491092
+  "/dev/null" 1586491072 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -41,6 +41,7 @@
   "/usr/local/texlive/2019/texmf-dist/tex/latex/ctex/engine/ctex-engine-xetex.def" 1554672143 5730 de0066e8f43c2480baa004413b5f6af6 ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-fandol.def" 1554672143 4996 2217dd7f55d187d07f478dc662af5223 ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/ctex/scheme/ctex-scheme-chinese.def" 1554672143 2496 9e748864c9044905753ce5089b5e7978 ""
+  "/usr/local/texlive/2019/texmf-dist/tex/latex/float/float.sty" 1137110151 6749 16d2656a1984957e674b149555f1ea1d ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty" 1552596970 162782 92e494a761faab10e02c6d41ddd6c0b3 ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/fontspec/fontspec.cfg" 1532898934 549 c4adac819276241fea8eb79c5ab7b99e ""
   "/usr/local/texlive/2019/texmf-dist/tex/latex/fontspec/fontspec.sty" 1552596970 1655 57753047adce10eb33bdfbe8a8047704 ""
@@ -70,9 +71,9 @@
   "pic1.png" 1584176054 429497 97f5aed4a477d42cb84ab810b879ac3a ""
   "pic2.png" 1584184647 20492 5f0c2e70e544a164b90ed9c95e3af8c9 ""
   "pic3.png" 1584184647 152664 e4bf03fb551204f86f74b6dca5df3dfa ""
-  "progress-report-1.aux" 1584232965 1352 404b796153a1752463fef056164cb7dd "xelatex"
-  "progress-report-1.tex" 1584232963 7164 f9d986abd947ed2518b323eea911c7c9 ""
+  "progress-report-1.aux" 1586491091 1352 88646afff14bf5c7881d4e70e1b48bd1 "xelatex"
+  "progress-report-1.tex" 1586491089 7154 7209327ededa9174668f06323e3c4037 ""
   (generated)
-  "progress-report-1.aux"
   "progress-report-1.xdv"
   "progress-report-1.log"
+  "progress-report-1.aux"
