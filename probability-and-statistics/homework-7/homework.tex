@@ -153,89 +153,142 @@ p_Y(y)=\left\{
 (2)
 因为$p(x,y)\neq p_X(x)p_Y(y) $，所以XY不独立。
 
-\section{3.3.1}
-$$P(U=1)=P(X=0,Y=1)+P(X=1,Y=1)=0.12$$
-$$P(U=2)=P(X=2,Y=1)+\sum^2_{i=0}P(X=i,Y=2)=0.37$$
-$$P(U=3)=\sum^3_{i=0}P(X=i,Y=3)=0.51$$
-\begin{table}[H]
-\centering
-\begin{tabular}{|l|l|l|l|}
-\hline
-U & 1    & 2    & 3    \\ \hline
-P & 0.12 & 0.37 & 0.51 \\ \hline
-\end{tabular}
-\end{table}
+% \section{3.3.1}
+% $$P(U=1)=P(X=0,Y=1)+P(X=1,Y=1)=0.12$$
+% $$P(U=2)=P(X=2,Y=1)+\sum^2_{i=0}P(X=i,Y=2)=0.37$$
+% $$P(U=3)=\sum^3_{i=0}P(X=i,Y=3)=0.51$$
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|l|l|l|}
+% \hline
+% U & 1    & 2    & 3    \\ \hline
+% P & 0.12 & 0.37 & 0.51 \\ \hline
+% \end{tabular}
+% \end{table}
 
-$$P(V=0)=\sum^3_{i=0}P(X=0,Y=i)=0.40$$
-$$P(V=1)=P(X=2,Y=1)+\sum^3_{i=0}P(X=1,Y=i)=0.44$$
-$$P(V=2)=P(X=2,Y=2)+P(X=2,Y=3)=0.16$$
+% $$P(V=0)=\sum^3_{i=0}P(X=0,Y=i)=0.40$$
+% $$P(V=1)=P(X=2,Y=1)+\sum^3_{i=0}P(X=1,Y=i)=0.44$$
+% $$P(V=2)=P(X=2,Y=2)+P(X=2,Y=3)=0.16$$
 
 
-\begin{table}[H]
-\centering
-\begin{tabular}{|l|l|l|l|}
-\hline
-V & 0    & 1    & 2    \\ \hline
-P & 0.40 & 0.44 & 0.16 \\ \hline
-\end{tabular}
-\end{table}
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|l|l|l|}
+% \hline
+% V & 0    & 1    & 2    \\ \hline
+% P & 0.40 & 0.44 & 0.16 \\ \hline
+% \end{tabular}
+% \end{table}
 
-\section{3.3.4}
+% \section{3.3.4}
+% (1)
+% $$P(Z=0)=P(X=0,Y=0)=P(X=0)P(Y=0)=0.5*0.5=0.25$$
+% $$P(Z=1)=1-P(Z=0)=0.75$$
+
+% (2)
+% $$P(X\leq i)=\sum^i_{j=i}(1-p)^{j-1}p=p\frac{1-(1-p)^i}{1-(1-p)}=1-(1-p)^i,\quad i=1,2,\cdots.$$
+
+% $$P(Z=i)=P(Z\leq i)-P(Z\leq i-1)=P(X\leq i)P(Y\leq i)-P(X\leq i-1)P(Y\leq i-1)$$
+
+% $$P(Z=i)=(1-p)^{i-1}p[2-(1-p)^{i-1}-(1-p)^i],\quad i=1,2\cdots.$$
+
+% \section{3.3.7}
+
+% $$F_Z(z)=P(Z\leq z)=P(X-Y\leq z)=\int^z_0\int^x_0 3xdydx+\int^1_z\int^x_{x-z} 3xdydx$$
+% $$F_Z(z)=\frac32z-\frac12z^3$$
+
+% $$p_Z(z)=F'_Z(z)=\frac32(1-z^2),\quad 0<z<1$$
+
+% 另外在区间(0,1)外的z有$p_Z(z)=0$。
+
+% \section{3.3.12}
+% $$Z=max\{X_1,X_2\}-min\{X_1,X_2\}=\frac{X_1+X_2+|X_1-X_2|}{2}-\frac{X_1+X_2-|X_1-X_2|}{2}$$
+
+% $$Z=max\{X_1,X_2\}-min\{X_1,X_2\}=|X_1-X_2|$$
+
+% 设$U=X_1-X_2,V=X_2$，则当$0<u+v<1,0<v<1$时，有下式：
+
+% $$P_{U,V}(u,v)=p_{X_1}(u+v)p_{X_2}(v)=2(u+v)*2v$$
+
+% 因此得到密度函数为
+
+% \begin{equation}
+% p_U(u)=\left\{
+% \begin{aligned}
+% &\int^1_{-u}4(u+v)vdv=-\frac23u^3+2u+\frac43,&-1<u<0,\\
+% &\int^{1-u}_{0}4(u+v)vdv=\frac23u^3-2u+\frac43,&0<u<1,\\
+% &0,&others.
+% \end{aligned}
+% \right.
+% \end{equation}
+
+% 因为当$0<z<1$时，$Z=|U|$的分布函数为：
+
+% $$F_Z(z)=P(|U|\leq z)=P(-z\leq U\leq z)=F_U(z)-F_U(-z)$$
+
+% 所以Z的密度函数为：
+
+% $$p_Z(z)=p_U(z)+p_U(-z)=\frac43z^3-4z+\frac83,\quad 0<z<1.$$
+
+
+\section{3.5.1}
+X的边际分布列为
+
+$$P(X=n)=\sum^n_{m=0}\frac{e^{-14}(7.14)^m(6.86)^n-m}{m!(n-m)!}=\frac{14^n}{n!}e^{-14},\quad n=0,1,\cdots$$
+
+所以X服从参数为14的泊松分布，由此可以得到：
+
+$$P(Y=m|X=n)=\frac{P(X=n,Y=n)}{P(X=n)}=C^m_n(\frac{7.14}{14})^m(\frac{6.86}{14})^{n-m},\quad m=0,1,\cdots,n$$
+\section{3.5.4}
+
 (1)
-$$P(Z=0)=P(X=0,Y=0)=P(X=0)P(Y=0)=0.5*0.5=0.25$$
-$$P(Z=1)=1-P(Z=0)=0.75$$
+
+因为X+Y服从负二项分布Nb(2,p)，所以$P(X+Y=m)=(m-1)(1-p)^{m-2}p^2$，由此可得，当$m=2,3,\cdots,k=1,2,\cdots,m-1$时，有：
+
+$$P(X=k|X+Y=m)=\frac{P(X=k,Y=m-k)}{P(X+Y=m)}=\frac1{m-1}$$
 
 (2)
-$$P(X\leq i)=\sum^i_{j=i}(1-p)^{j-1}p=p\frac{1-(1-p)^i}{1-(1-p)}=1-(1-p)^i,\quad i=1,2,\cdots.$$
 
-$$P(Z=i)=P(Z\leq i)-P(Z\leq i-1)=P(X\leq i)P(Y\leq i)-P(X\leq i-1)P(Y\leq i-1)$$
+因为$X+Y\sim b(2n,p)$，所以有：
 
-$$P(Z=i)=(1-p)^{i-1}p[2-(1-p)^{i-1}-(1-p)^i],\quad i=1,2\cdots.$$
+$$P(X=k|X+Y=m)=\frac{P(X=k,Y=m-k)}{P(X+Y=m)}=\frac{C^k_n*C^{m-k}_{n}}{C^m_{2n}},\quad m=0,1,2,\cdots,2n,k=0,1,2,\cdots,min\{n,m\}$$
+\section{3.5.7}
 
-\section{3.3.7}
+画出图像可以看到，$p(x,y)$的非零区域为x轴上方类似于半圆型的区域，由于Latex画图比较繁琐，不在此处作出图像。
 
-$$F_Z(z)=P(Z\leq z)=P(X-Y\leq z)=\int^z_0\int^x_0 3xdydx+\int^1_z\int^x_{x-z} 3xdydx$$
-$$F_Z(z)=\frac32z-\frac12z^3$$
+所以当$-1<x<1$时：
 
-$$p_Z(z)=F'_Z(z)=\frac32(1-z^2),\quad 0<z<1$$
+$$p_X(x)=\int^1_{x^2}\frac{21}{4}x^2ydy=\frac{21}{8}x^2(1-x^4)$$
 
-另外在区间(0,1)外的z有$p_Z(z)=0$。
-
-\section{3.3.12}
-$$Z=max\{X_1,X_2\}-min\{X_1,X_2\}=\frac{X_1+X_2+|X_1-X_2|}{2}-\frac{X_1+X_2-|X_1-X_2|}{2}$$
-
-$$Z=max\{X_1,X_2\}-min\{X_1,X_2\}=|X_1-X_2|$$
-
-设$U=X_1-X_2,V=X_2$，则当$0<u+v<1,0<v<1$时，有下式：
-
-$$P_{U,V}(u,v)=p_{X_1}(u+v)p_{X_2}(v)=2(u+v)*2v$$
-
-因此得到密度函数为
 
 \begin{equation}
-p_U(u)=\left\{
+p(y|x)=\frac{p(x,y)}{p_x(x)}=\left\{
 \begin{aligned}
-&\int^1_{-u}4(u+v)vdv=-\frac23u^3+2u+\frac43,&-1<u<0,\\
-&\int^{1-u}_{0}4(u+v)vdv=\frac23u^3-2u+\frac43,&0<u<1,\\
+&\frac{2y}{1-x^4},&0<y<1,\\
 &0,&others.
 \end{aligned}
 \right.
 \end{equation}
 
-因为当$0<z<1$时，$Z=|U|$的分布函数为：
+$$p(y|x=0.5)=\frac{32y}{15}$$
 
-$$F_Z(z)=P(|U|\leq z)=P(-z\leq U\leq z)=F_U(z)-F_U(-z)$$
+由此得到：
 
-所以Z的密度函数为：
+$$P\{Y\geq 0.75|X=0.5\}=\int^1_{0.75}\frac{32y}{15}=\frac7{15}$$
+\section{3.5.12}
 
-$$p_Z(z)=p_U(z)+p_U(-z)=\frac43z^3-4z+\frac83,\quad 0<z<1.$$
+先求出条件密度函数
+\begin{equation}
+p(x|y=0.5)=\left\{
+\begin{aligned}
+&\int^1_0(x+y)dx=x+0.5,&0<x<1,\\
+&0,&others.
+\end{aligned}
+\right.
+\end{equation}
 
-
-
-
-
-
-
+由此得到：
+$$E(X|Y=0.5)=\int^1_0x(x+0.5)dx=\frac7{12}$$
 
 \end{document}
 

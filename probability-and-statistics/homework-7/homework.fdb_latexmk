@@ -1,10 +1,10 @@
 # Fdb version 3
-["xdvipdfmx"] 1586866142 "homework.xdv" "homework.pdf" "homework" 1586866209
-  "homework.xdv" 1586866142 21476 8a3216eaa7b3d8f8297289fe1acdf80a "xelatex"
+["xdvipdfmx"] 1587480403 "homework.xdv" "homework.pdf" "homework" 1587480403
+  "homework.xdv" 1587480403 20668 d58d0fb8b8087ffb4f2c0103f77139d2 "xelatex"
   (generated)
   "homework.pdf"
-["xelatex"] 1586866141 "homework.tex" "homework.xdv" "homework" 1586866209
-  "/dev/null" 1586866208 0 d41d8cd98f00b204e9800998ecf8427e ""
+["xelatex"] 1587480402 "homework.tex" "homework.xdv" "homework" 1587480403
+  "/dev/null" 1587480360 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -92,9 +92,9 @@
   "/usr/local/texlive/2019/texmf-dist/web2c/texmf.cnf" 1557092114 35484 cb1661360667bf4db662a8895053b554 ""
   "/usr/local/texlive/2019/texmf-var/web2c/xetex/xelatex.fmt" 1583576767 3751074 25c56c16813f94d1ed27db746fe3a1ae ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "homework.aux" 1586866142 923 b5c0cc7b50c4446c81b3695f4b50f731 "xelatex"
-  "homework.tex" 1586866141 5261 7c0893990a1db7f8f83bee803763d49a ""
+  "homework.aux" 1587480403 923 4ae59a4e9f4f4f0bbc654c2a6e69bd90 "xelatex"
+  "homework.tex" 1587480402 6857 67ab55b9a71251e4b04a1617e158bce4 ""
   (generated)
-  "homework.log"
-  "homework.aux"
   "homework.xdv"
+  "homework.aux"
+  "homework.log"
