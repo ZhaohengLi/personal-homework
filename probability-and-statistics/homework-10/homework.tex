@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{diagbox}
+\geometry{a4paper, scale=0.8}
+
+\title{概率论与数理统计第十次作业}
+\author{ZhaohengLi 2017050025}
+
+\begin{document}
+\maketitle
+
+\section{4.1.5}
+
+充分性证明：
+
+令$f(x)=\frac{x}{1+x}, x>0$，则有$f'(x)=\frac{x}{(1+x)^2}>0, x>0$，故$f(x)$是$x$的严格单调增函数，因而对任意的$\epsilon>0$，有：
+
+$$\{|X_n-X|>\epsilon\} \subset \{\frac{|X_n-X|}{1+|X_N-X|}>\frac{\epsilon}{1+\epsilon}\}$$
+
+于是对于任意的$\epsilon > 0$，当$n \rightarrow \infty$时，有：
+
+$$P\{|X_n-X|>\epsilon\} \leq P\{\frac{|X_n-X|}{1+|X_N-X|}>\frac{\epsilon}{1+\epsilon}\} \leq \frac{1+\epsilon}{\epsilon}(\frac{|X_n-X|}{1+|X_N-X|})\rightarrow 0$$
+
+必要性证明：
+
+对于任意的$\epsilon >0$，令$A_{\epsilon}=\{|X_n-X|>\epsilon\}$，因为$X_n\rightarrow X$，故存在充分大的N，使得当$n\geq N$时，有$P(A_{\epsilon})<\epsilon$,于是有：
+
+$$E(\frac{|X_n-X|}{1+|X_N-X|})=E(\frac{|X_n-X|}{1+|X_N-X|}I_{A_{\epsilon}})+E(\frac{|X_n-X|}{1+|X_N-X|}I_{\overline{A_{\epsilon}}})$$
+
+$$E(\frac{|X_n-X|}{1+|X_N-X|})\leq P(A_\epsilon)+\epsilon<2\epsilon$$
+
+当$n\rightarrow \infty$时，有：
+
+$$E(\frac{|X_n-X|}{1+|X_N-X|})\rightarrow 0$$
+
+
+\section{4.1.9}
+$$P(X_n+Y_n\leq z)=P(X_n+Y_n \ leq z-a+\epsilon)+lim_{n\rightarrow \infty}P(|Y-a|>\epsilon)$$
+$$P(X_n+Y_n\leq z)\leq P(X_n\leq z-a+\epsilon)+P(|Y_n-a|>\epsilon)$$
+
+因此
+
+$$lim_{n\rightarrow \infty}P(X_n+Y_n\leq z)\leq lim_{n\rightarrow \infty}P(X_n\leq z-a+\epsilon)+lim_{n\rightarrow \infty}P(|Y_n-a|>\epsilon)$$
+
+$$lim_{n\rightarrow \infty}P(X_n+Y_n\leq z)=F(z-a+\epsilon)$$
+
+因为：
+
+$$P(X_n+Y_n\leq z) \geq P(X_n\leq z-a+\epsilon)+P(|Y_n-a|>\epsilon)$$
+
+
+所以有：
+$$lim_{n\rightarrow \infty}P(X_n+Y_n\leq z) \geq P(X\leq z-a-\epsilon)=F(z-a-\epsilon)$$
+
+由上述两个关系式，可以得出：
+
+$$lim_{n\rightarrow \infty}P(X_n+Y_n\leq z)=F(z-a)$$
+
+\section{4.1.13}
+当$x<0$时，有$P(Y_n \leq x)=0$。
+
+当$x<\beta$时，有$P(Y_n \leq x)=1$。
+
+当$0\leq x < \beta$时，有：
+
+$$P(Y_n \leq x) = \prod^n_{i=1}P(X_i\leq x)=\prod^n_{i=1}\int^x_0\frac1\beta dx=(\frac x\beta)^n$$
+
+所以，对于任意的$\epsilon > 0 (\epsilon < \beta)$，当$n\rightarrow \infty$时，有：
+
+$$P(|Y_n-\beta|\geq \epsilon)=P(Y_n \leq \beta - \epsilon)=(\frac{\beta-\epsilon}{\beta})^n \rightarrow 0$$
+
+因此结论得证。
+
+\section{4.1.15}
+$$LnY_n=\frac1n\sum^n_{i=1}X_i$$
+$$E(lnX_i)=\int^i_0lnxdx=-1$$
+$$E(lnX_i)^2=\int^1_0(lnx)^2dx=2$$
+$$Var(lnX_i)=1$$
+
+由切比雪夫不等式可以得到：
+
+对任意的$\epsilon > 0$，有：
+
+$$P(|\frac1n\sum^n_{i=1}lnX_i-1(-1)|\geq\epsilon)\leq \frac1{n\epsilon^2}\rightarrow 0$$
+
+因此 $lnY_n\rightarrow -1$,故$Y_n=(\prod^n_{i=1}X_i)^{\frac1n}\rightarrow^{-1}$，即$c=e^{-1}$。
+
+
+\section{4.1.19}
+假设$E(X_n)=0$，$\sigma^2,S_n^2$保持不变。
+
+有：
+
+$$S_n^2=\frac1n\sum^n_{k=1}(X_k-\overline{X}_n)^2=\frac1n\sum^n_{k=1}X_k^2-(\overline{X}_n)^2$$
+
+因为：
+
+$$\overline{X}_n=\frac1n\sum^n_{i=1}X_i\rightarrow\frac1n\sum^n_{i=1}E(X_i)=0$$
+
+$$\frac1n\sum^n_{k=1}X^2_k\rightarrow \sigma^2$$
+
+因此有：
+
+$$S^2_n=\frac1n\sum^n_{k=1}X^2_k-(\overline{X}_n)^2\rightarrow \sigma^2$$
+
+\section{4.3.3}
+
+因为随机变量相互独立，而且有$E(X_n)=0,Var(X_n)=2,n=2,3,\cdots.$，因此有马尔可夫条件：
+
+$$\frac1{n^2}Var(\sum^n_{i=2}X_i)=\frac{2(n-1)}{n^2}\rightarrow 0,\quad (n\rightarrow \infty)$$
+
+由马尔可夫大数定律可以知道 ${X_n}$服从大数定律。
+
+\section{4.3.5}
+
+因为$E(X_n)=p_n, Var(X_n)=p_n(1-p_n)\leq\frac14$，所以由变量的独立性可以得到：
+
+$$\frac1{n^2}Var(\sum^n_{k=2}X_k)=\frac{1}{4n}\rightarrow 0,\quad (n\rightarrow \infty)$$
+
+
+由马尔可夫大数定律可以知道 ${X_n}$服从大数定律。
+
+
+\section{4.3.9}
+因为:
+
+$$\frac1{n^2}Var(\sum^n_{i=1}X_i)=\frac{n\sqrt{n}}{n^2}\rightarrow 0,\quad (n\rightarrow \infty)$$
+
+
+由马尔可夫大数定律可以知道 ${X_n}$服从大数定律。
+
+
+
+\section{4.3.13}
+
+充分性证明：
+
+对于任意的$\epsilon > 0$，当$t>0$时，$f(t)=\frac{t^2}{1+t^2}$是增函数。
+
+因此当$|y-a_n|\geq\epsilon$时，有：
+
+$$\frac{|y-a_n|^2}{1+|y-a_n|^2}\geq \frac{\epsilon^2}{1+\epsilon^2}$$
+
+$$\frac{1+\epsilon^2}{\epsilon^2}\frac{|y-a_n|^2}{1+|y-a_n|^2}\geq1$$
+
+因此有：
+
+$$P(|Y_n-a_n|\geq \epsilon)=\int_{|y-a_n|\geq\epsilon}dF_{Y_n}(y)\leq\frac{1+\epsilon^2}{\epsilon^2}E[\frac{(Y_n-a_n)^2}{1+(Y_n-a_n)^2}]$$
+
+所以当$lim_{n\rightarrow+\infty}E[\frac{(Y_n-a_n)^2}{1+(Y_n-a_n)^2}]=0$时，有$lim_{n\rightarrow+\infty}P(|Y_n-a_n|\geq\epsilon)=0$，因此服从大数定律。
+
+必要性证明：
+
+设${X_n}$服从大数定律，即$lim_{n\rightarrow+\infty}P(|Y_n-a_n|\geq\epsilon)=0$，那么对于$\epsilon > 0$，存在N，当$n>N$时，有：
+
+$$P(|Y_n-a_n|\geq\epsilon)\leq\epsilon$$
+
+因为函数$f(t)$为增函数，且$0<f(t)<1$，那么：
+
+$$0\leq E[\frac{(Y_n-a_n)^2}{1+(Y_n-a_n)^2}]\leq\epsilon^2+\epsilon$$
+
+因此可以得到：
+$$lim_{n\rightarrow \infty}E[\frac{(Y_n-a_n)^2}{1+(Y_n-a_n)^2}]=0$$
+
+
+\end{document}
+
+
+
+
+
