@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\geometry{a4paper, scale=0.8}
+
+\title{概率论与数理统计第十二次作业}
+\author{ZhaohengLi 2017050025}
+
+\begin{document}
+\maketitle
+
+\section{5.3.26}
+总体的分布函数为：
+
+$$F(x)=\int^x_06t(1-t)dt=3x^2-2x^3=x^2(3-2x),0\leq x \leq 1$$
+
+$$1-F(x)=(1-x)^2(2x+1),0\leq x \leq 1$$
+
+因此样本中位数$m_{0.5}=x_{(5)}的精确分布密度函数为$
+
+$$p_{m_{0.5}}(x)=3780x^9(1-x)^9(3-2x)^4(2x+1)^4$$
+
+通过近似计算可以得到：
+
+$$p(x_{0.5})=6*0.5*(1-0.5)=1.5$$
+
+当$n=9$时，$m_{0.5}$的渐进分布为：
+
+$$m_{0.5}\sim N(x_{0.5},\frac1{4np^2(x_{0.5})})=N(0.5,\frac1{81})$$
+
+最终得出：
+
+$$P(m_{0.5}<0.7)\approx \Phi (1.8)=0.9641$$
+
+\section{5.3.29}
+
+(1)
+
+$$E\{F(x_{(6)}\}=\frac6{11}$$
+$$Var\{F(x_{(6)}\}=\frac{6(10+1-6)}{(10+1)^2(10+2)}=\frac{5}{242}$$
+
+(2)
+
+因为$F(x_{(6)})\sim Be(6,5)$,所以$F(x_{(6)}$在$x=0.15$处的分布函数值为：
+
+$$betacdf(0.15,6,5)=0.0014$$
+
+\section{5.3.31}
+令 $y_i=\frac{x_i-\mu}{\sigma}\simExp(1)$，那么$y_{(1)},\cdots,y_{(n)}$的联合密度为：
+
+$$p(y_1,\cdots,y_n)=n!exp\{-\sum^n_{i=1}y_i\}$$
+
+通过变换求得联合密度为$f(t_1,\cdots,t_n)=exp\{-\sum^n_{i=1}t_i\}$，由联合密度可以知道$T_1,\cdots,T_n$是独立同分布的随机变量，且$T_i\sim Exp(1)$，因此有：
+
+$$P((n-i-1)\frac2\sigma(x_{(i)}-x_{(i-1)})\leq x)=P(2(n-i-1)(y_{(i)}-y_{(i-1)})\leq x)$$
+
+$$=P(2T_i\leq x)=P(T_i \leq \frac x2)=1-e^{-\frac x2}$$
+
+这是指数分布的$Exp(\frac12)$的分布函数，原始得证。
+
+
+\section{5.4.2}
+
+$$P(|\overline{x}-\mu|<1)=P(|\frac{\overline{x}-\mu}{\sqrt{16/n}}|<\frac{1}{\sqrt{16/n}})=2\Phi(\frac{\sqrt{n}}{4})-1\geq 0.95$$
+
+解得$n\geq61.47$，因此n至少为62时，上述不等式成立。
+
+\section{5.4.3}
+
+$$P(|\overline{x}-\overline{y}|>0.2)=P(\frac{|\overline{x}-\overline{y}|}{\sqrt{7/15}}>\frac{0.2}{\sqrt{7/15}})=2(1-\Phi(0.29))=0.7718$$
+
+\section{5.4.8}
+
+X的密度函数为：
+
+$$p_x(x)=\frac{\Gamma(\frac{m+n}{2})(\frac nm)}{\Gamma(\frac n2)\Gamma(\frac m2)}x^{\frac n2 -1}(1+\frac nm x)^{-\frac{m+n}2}$$
+
+因为z在$(0,+\infty)$上单调增,其反函数为：
+
+$$x=\frac{mz}{n(1-z)},\frac{dx}{dz}=\frac m{n(1-z)^2}$$
+
+Z的密度函数为：
+
+$$p_Z(z)=\frac{\Gamma(\frac{m+n}2)}{\Gamma(\frac n2)\Gamma(\frac m2)}z^{\frac n2-1}(1-z)^{\frac m2-1}, \quad 0<z<1$$
+
+因此Z服从$Be(\frac n2, \frac m2)$，两个参数分为为F分布两个自由度的一半。
+
+
+
+\section{5.4.11}
+
+根据题意有：
+
+$$c(\overline x-\mu_1)\sim N(0, \frac{c^2\sigma^2}{n}),\quad d(\overline y -\mu_2)\sim N(0, \frac{d^2\sigma^2}{m})$$
+
+$$\frac{(n-1)s_x^2}{\sigma^2}\sim X^2(n-1), \quad \frac{(m-1)s_y^2}{\sigma^2}\sim X^2(m-1)$$
+
+且$\overline x, \overline y, s_x^2, s_y^2$相互独立，故：
+
+$$c(\overline x-\mu_1)+d(\overline y-\mu_2)\sim N(0,\frac{c^2\sigma^2}{n}+\frac{d^2n^2}{m})$$
+$$\frac{(n+m-2)s_w^2}{\sigma^2}=\frac{(n-1)s^2_x}{\sigma^2}+\frac{(m-1)s_y^2}{\sigma^2}\sim X^2(n+m-2)$$
+
+因此：
+
+$$t=\frac{c(\overline x-\mu_1)+d(\overline y-\mu_2)}{s_w\sqrt{\frac{c^2}{n}+\frac{d^2}{m}}}=\frac{[c(\overline x-\mu_1)+d(\overline y-\mu_2)]/\sqrt{\frac{c^2\sigma^2}{n}+\frac{d^2\sigma^2}{m}}}{\sqrt{\frac{(n+m-2)s_w^2}{\sigma^2}/(n+m-2)}}$$
+
+即：
+
+$$t\sim t(n+m-2)$$
+
+
+
+\section{5.4.14}
+
+$$\frac 1 {\sigma^2}(x_1^2+x_2^2+\cdots+x_{10}^2)\sim X^2(10)$$
+
+$$\frac 1 {\sigma^2}(x_{11}^2+x_{12}^2+\cdots+x_{15}^2)\sim X^2(5)$$
+
+因为两者独立，因此：
+
+$$y=\frac{\frac 1 {\sigma^2}(x_1^2+x_2^2+\cdots+x_{10}^2)/10}{\frac 1 {\sigma^2}(x_{11}^2+x_{12}^2+\cdots+x_{15}^2)/5}=F(10,5)$$
+
+\end{document}
+
+
+
+
+
