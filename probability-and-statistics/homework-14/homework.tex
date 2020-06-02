@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\geometry{a4paper, scale=0.8}
+
+\title{概率论与数理统计第十四次作业}
+\author{ZhaohengLi 2017050025}
+
+\begin{document}
+\maketitle
+
+\section{6.4.1}
+
+$$MSE(\hat g)=E(\hat g-\theta)^2=E(\hat g - \overline g)^2+MSE(\overline g)+2E[(\hat g-\overline g)(\overline g-\theta)]$$
+
+因为：
+
+$$\overline g = E(\hat g | T)$$
+
+所以有：
+
+$$E[(\hat g- \overline g)|T]=0$$
+
+$$E[(\hat g-\overline g)(\overline g-\theta)]=0$$
+
+因此：
+
+$$MSE(\hat g)=E(\hat g - \overline g)^2+MSE(\overline g)\geq MSE(\overline g)$$
+
+\section{6.4.2}
+由题意可以知道：
+
+$$E(aT_1+bT_2)=a\theta_1+b\theta_2$$
+$$Cov(aT_1+bT_2,\phi)=aCov(T_1,\phi)+bCov(T_2,\phi)=0$$
+
+因此$aT_1+bT_2$是$a\theta_1+b\theta_2$的UMVUE。
+\section{6.4.7}
+
+因为：
+
+$$lnp(x:\theta)=ln2+ln\theta-3lnx-\theta/x^2$$
+
+所以有：
+
+$$\frac{\partial lnp(x;\theta)}{\partial\theta}=\frac1\theta-\frac1{x^2},\frac{\partial^2 lnp(x;\theta)}{\partial^2\theta}=\frac1{\theta^2}$$
+
+由此得到：
+
+$$I(\theta)=-E(\frac{\partial^2 lnp(x;\theta)}{\partial^2\theta})=\frac1{\theta^2}$$
+
+\section{6.4.14}
+(1)
+
+$x_1$的密度函数表示为：
+
+$$p(x,\theta)=(\frac{1-\theta}{2})^{\frac12(x^2-x)}(\frac12)^{1-x^2}(\frac\theta2)^{\frac12(x^2+x)}$$
+
+因此相应的对数似然函数解得：
+
+$$\hat \theta = \frac12+\frac{\sum_{i=1}^n x_i}{2\sum^n_{i=1}x_i^2}$$
+
+所以：
+
+$$\sum^n_{i=2}x_i^2\sim b(n-1,\frac12)$$
+
+$$E\hat \theta_1=\frac12+\frac n2E(\frac{x_1}{x_1^2+\sum_{i=2}^n x_i^2})=\frac12+\frac12(\theta-\frac12)(1-\frac1{2^n})$$
+
+因为：
+
+$$n\frac1{2^n}(\frac11(C^0_{n-1})+\frac12(c^1_{n-1})+\cdots+\frac1n(\frac{n-1}{n-1}))=1-\frac1{2^n}$$
+
+所以$\hat \theta_1=\frac12+\frac{\sum^n_{i=1}x_i}{2\sum^n_{i=1}x_i^2}$不是$\theta$的无偏估计。
+
+\section{6.6.2}
+由已知条件得到$\mu$的0.95置信区间为：
+
+$$[\overline x - u_{1-\alpha/2}\alpha/\sqrt{n}, \overline x + u_{1-\alpha/2}\alpha/\sqrt{n}]$$
+
+解：
+
+$$n\geq (2/k)^2\sigma^2u^2_{1-\alpha/2}$$
+
+得到n至少为$(\frac{3.92\sigma}{k})^2$，才能保证题目要求。
+
+
+
+\section{6.6.3}
+(1)
+
+Y=lnX的样本值为
+
+$$-0.6931,0.2231,-0.23231,0.6931$$
+
+置信区间为：
+
+$$[\overline x - u_{1-\alpha/2}\alpha/\sqrt{n}, \overline x + u_{1-\alpha/2}\alpha/\sqrt{n}]=[-0.9800,0.9800]$$
+
+(2)
+因为是严格增函数，因此可以利用（1）的结果：
+
+$$[e^{-0.98+0.5},e^{0.98+0.5}]=[0.6188,4.3929]$$
+
+
+
+\section{6.6.7}
+由中心极限定理可以知道，当n较大时，样本均值$\overline x \sim N(\lambda,\frac\lambda n)$，因而$u=\frac{\overline x -\lambda}{\sqrt{\lambda/n}}\sim N(0,1)$，因此有：
+
+$$P(|\frac{\overline x -\lambda}{\sqrt{\lambda/n}}|\leq u_{1-\alpha/2})=1-\alpha$$
+
+因为括号里面的事件相当于$(\overline x-\lambda )^2\leq u^2_{1-\alpha/2}\lambda/n$，因而得到：
+
+$$\lambda^2-(2\overline x+\frac1nu^2_{1-\alpha/2})\lambda+\overline x^2\leq 0$$
+
+二次曲线与$\lambda$轴有两个交点，记为$\lambda_L,\lambda_U,(\lambda_L<\lambda_U)$，则有$P(\lambda_L\leq\lambda\leq\lambda_U)=1-\alpha$，其中$\lambda_L,\lambda_U$可以表示为：
+
+$$\frac{2\overline x+\frac1nu^2_{1-\alpha/2}\pm \sqrt{(2\overline x+\frac1nu^2_{1-\alpha/2})^2-4\overline x^2}}{2}$$
+
+因此题目得证。
+
+\section{6.6.9}
+
+(1)
+
+$$[\overline x-\overline y - u_{1-\alpha/2} \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}},\overline x-\overline y +u_{1-\alpha/2} \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}]$$
+计算得到：
+
+$$[-0.939,12.0939]$$
+
+(2)
+
+$$[\overline x-\overline y-\sqrt{\frac{n_1+n_2}{n_1n_2}}s_wt_{1-\alpha/2}(n_1+n_2-2),\overline x-\overline y+\sqrt{\frac{n_1+n_2}{n_1n_2}}s_wt_{1-\alpha/2}(n_1+n_2-2)]$$
+
+计算得到：
+
+$$[-0.2063,12.2063]$$
+
+(3)
+
+$$[\overline x- \overline y - s_0t_{1-\alpha/2}(l), \overline x- \overline y +s_0t_{1-\alpha/2}(l)]$$
+
+$$s_0^2=\frac{s_x^2}{n_1}+\frac{s_y^2}{n_2}$$
+
+计算可得：
+
+$$[-0.3288,12.3288]$$
+
+(4)
+
+$$[\frac{s_x^2}{s_y^2}*\frac{1}{F_{1-\alpha/2}(n_1-1,n_2-1)},\frac{s_x^2}{s_y^2}*\frac{1}{F_{\alpha/2}(n_1-1,n_2-1)}]$$
+
+计算可得：
+
+$$[0.3359,4.0973]$$
+
+
+
+\section{6.6.10}
+(1)
+
+$$[\frac{s_x^2}{s_y^2}*\frac{1}{F_{1-\alpha/2}(m-1,n-1)},\frac{s_x^2}{s_y^2}*\frac{1}{F_{\alpha/2}(m-1,n-1)}]$$
+
+计算可得：
+
+$$[0.0620,1.0075]$$
+
+(2)
+
+$$s_w^2=\frac{(m-1)s_x^2+(n-1)s_y^2}{m+n-2}=0.1$$
+
+查表得到$t_{0.975}(18)=2.1009$
+
+计算得到
+$$[-0.2771,0.3171]$$
+
+\section{6.6.11}
+
+由指数分布和伽马分布的关系可以得到$\sum^n_{i=1}x_i\sim Ga(n,\lambda)$，根据伽马分布的性质，有：
+
+$$s\lambda\sum^n_{i=1}x_i\sim Ga(n,\frac12)=X^2(2n)$$
+
+因此有：
+
+$$p(X^2_{\frac\alpha2}(2n)\leq2\lambda\sum^n_{i=1}x_i\leq X^2_{1-\frac\alpha2}(2n))=1-\alpha$$
+
+因此置信区间为
+
+$$[\frac{X^2_{\frac\alpha2}(2n)}{2n\overline x},\frac{X^2_{1-\frac\alpha2}(2n)}{2n\overline x}]$$
+\end{document}
+
+
+
+
+
